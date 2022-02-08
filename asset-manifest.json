@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/spicy_soups/static/js/main.c5086005.js",
+    "static/media/vegetables-set-left-black-slate.jpg": "/spicy_soups/static/media/vegetables-set-left-black-slate.f28aca96eef193d9160d.jpg",
+    "index.html": "/spicy_soups/index.html",
+    "main.c5086005.js.map": "/spicy_soups/static/js/main.c5086005.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c5086005.js"
+  ]
+}
