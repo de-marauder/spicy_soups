@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/spicy_soups/static/js/main.2850fc09.js",
+    "main.js": "/spicy_soups/static/js/main.168ad0d8.js",
     "static/media/vegetables-set-left-black-slate.jpg": "/spicy_soups/static/media/vegetables-set-left-black-slate.f28aca96eef193d9160d.jpg",
     "index.html": "/spicy_soups/index.html",
-    "main.2850fc09.js.map": "/spicy_soups/static/js/main.2850fc09.js.map"
+    "main.168ad0d8.js.map": "/spicy_soups/static/js/main.168ad0d8.js.map"
   },
   "entrypoints": [
-    "static/js/main.2850fc09.js"
+    "static/js/main.168ad0d8.js"
   ]
 }
