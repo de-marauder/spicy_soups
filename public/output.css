@@ -734,6 +734,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 66.666667%;
 }
 
+.w-9\/12 {
+  width: 75%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -985,6 +989,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pr-2 {
@@ -1370,6 +1379,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-space-x-reverse: 0;
     margin-right: calc(2.5rem * var(--tw-space-x-reverse));
     margin-left: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .sm\:p-5 {
+    padding: 1.25rem;
   }
 
   .sm\:text-7xl {
