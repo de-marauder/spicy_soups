@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/spicy_soups/static/js/main.14f73e55.js",
+    "main.js": "/spicy_soups/static/js/main.2aacc613.js",
     "static/media/vegetables-set-left-black-slate.jpg": "/spicy_soups/static/media/vegetables-set-left-black-slate.f28aca96eef193d9160d.jpg",
     "static/media/Nigerian jollof rice and fish.jpg": "/spicy_soups/static/media/Nigerian jollof rice and fish.69bca17e8544280d1321.jpg",
     "static/media/IMG_7956.jpg": "/spicy_soups/static/media/IMG_7956.f061b288d22a7ec80e0e.jpg",
@@ -8,12 +8,13 @@
     "static/media/commercial.png": "/spicy_soups/static/media/commercial.c7c6a966aa0beb65cffc.png",
     "static/media/investment.png": "/spicy_soups/static/media/investment.33592a62560023bb6ff6.png",
     "static/media/images (1).jfif": "/spicy_soups/static/media/images (1).c5b32222f87b50a5d6b8.jfif",
+    "static/media/email-mail-pngrepo-com.png": "/spicy_soups/static/media/email-mail-pngrepo-com.6908c354c144c4b38df2.png",
     "static/media/okrajfif.jfif": "/spicy_soups/static/media/okrajfif.071a401eca5b14ced6c9.jfif",
     "static/media/images.jfif": "/spicy_soups/static/media/images.6b9914b9b94bc3a50c77.jfif",
     "index.html": "/spicy_soups/index.html",
-    "main.14f73e55.js.map": "/spicy_soups/static/js/main.14f73e55.js.map"
+    "main.2aacc613.js.map": "/spicy_soups/static/js/main.2aacc613.js.map"
   },
   "entrypoints": [
-    "static/js/main.14f73e55.js"
+    "static/js/main.2aacc613.js"
   ]
 }
