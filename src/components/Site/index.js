@@ -5,6 +5,7 @@ import Hero from "../Hero";
 import Navbar from '../Navbar';
 import Sidebar from "../Sidebar";
 import Body from "../Body/Body";
+import Footer from "../Footer/Footer";
 
 const Site = () => {
     const [sidebar, sidebarToggler] = useState(true);
@@ -17,11 +18,12 @@ const Site = () => {
     }
 
     return (
-        <div className="w-screen overflow-hidden">
+        <div className="w-screen font-cabin overflow-hidden">
             <Navbar sidebar={sidebar} doStuff={()=>{sidebarToggler(false)}} />
             <Sidebar sidebar={sidebar} doStuff={()=>{sidebarToggler(true)}} style={style} />
             <Hero />
             <Body />
+            <Footer />
         </div>
     )
 }

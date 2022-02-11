@@ -1,0 +1,51 @@
+.Contact {
+    position: relative;
+    text-align: center;
+    padding: 0px 20px 10px;
+}
+
+.Contact * {
+    position: relative;
+}
+.Contact> div >p {
+    color: black;
+    font-size: 20px;
+}
+
+.Grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    width: 60%;
+    margin: 10px auto;
+}
+/* grid on smaller screens */
+@media (max-width: 500px) {
+    .Grid {
+        width: 90%
+    }
+}
+.Contact h4 {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0;
+    font-weight: lighter;
+}
+
+.Contact h4 a {
+    color: #999;
+}
+.Contact h4 a:hover {
+    color: #04ab81;
+}
+
+.Contact span img {
+    width: 20px;
+    height: 20px;
+    margin: 0 10px
+}
+
+.Form {
+    margin: 20px 0;
+}
+
