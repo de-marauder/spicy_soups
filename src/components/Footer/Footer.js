@@ -6,7 +6,7 @@ const footer = () => {
     const date = new Date()
     console.log(date)
     return (
-        <section className="bg-black/80 text-white text-center">
+        <section className="bg-gradient-to-tr from-black to-black/60 text-white text-center">
         
             {/* <svg className={classes.Curve} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f3f4f5" fillOpacity="1" d="M0,288L120,261.3C240,235,480,181,720,176C960,171,1200,213,1320,234.7L1440,256L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
             <div className="" >
