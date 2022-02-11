@@ -7,7 +7,7 @@ const PopularDishes = () => {
 
     const dishes = popular.map((el, id) => {
         return (
-            <div key={id} className="shadow-xl sm:w-6/12 md:w-5/12 lg:w-3/12 px-3 py-5 sm:p-5 bg-white/0">
+            <div key={id} className="shadow-xl border-2 border-white sm:w-6/12 md:w-5/12 lg:w-3/12 px-3 py-5 sm:p-5 bg-white/0">
                 <img className="rounded-full h-32 w-32 mb-4 mx-auto" src={el.Img} alt='Popular dish' />
                 <div>
                     <strong className="text-xl">{el.meal}</strong>
@@ -29,7 +29,7 @@ const PopularDishes = () => {
         <div className="flex w-full justify-center p-10 flex-wrap gap-5">
             {dishes}
         </div>
-        <Button><strong>Checkout Full Menu</strong></Button>
+        <Button className="text-xl w-3/4"><strong>Checkout Full Menu</strong></Button>
     </>
     )
 }
