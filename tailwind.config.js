@@ -18,6 +18,9 @@ module.exports = {
       },
       boxShadow: {
         'heroTitle': '4px 4px 1px yellow',
+      },
+      colors: {
+        'c-green': "#2a4835"
       }
     },
   },

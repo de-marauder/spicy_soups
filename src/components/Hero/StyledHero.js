@@ -8,5 +8,5 @@ export const Hero = styled.section`
     background-position: top right;
     background-size: cover;
     width: 100vw;
-    height: 100vh;
+    height: 110vh;
 `

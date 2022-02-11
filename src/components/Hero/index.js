@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Hero } from './StyledHero'
+import { Hero } from './StyledHero';
+import Button from '../UI/Button/Button';
 
 const hero = () => {
     return (
         <Hero className="relative cursor-default flex justify-center overflow-hidden text-white">
-            <div className='absolute left-2 sm:left-16 md:left-20 top-1/4 md:top-40 pr-2 md:pr-4 pb-8 border-lime-600 border-b-4 shadow-heroTitle shadow-lime-200/80 border-r-4'>
+            <div className='absolute left-2  sm:left-16 md:left-20 top-1/4 md:top-40 pr-2 md:pr-4 pb-8 border-lime-600 border-b-4 shadow-heroTitle shadow-lime-200/80 border-r-4'>
                 <h1 className='bg-hero-pattern mb-5 font-cabinSketch sm:text-7xl md:text-8xl text-5xl font-semibold'>Spicy soups</h1>
                 <h2 className="font-festive text-4xl sm:text-6xl md:text-7xl">The Naija way</h2>
             </div>
@@ -18,9 +19,9 @@ const hero = () => {
                     <p>.</p>
                     <p>.</p>
                 </div>
-                <button className='mx-auto px-4 text-2xl border-x-2 border-lime-400 hover:text-lime-400'>
+                <Button className="text-2xl">
                     Place an order
-                </button>
+                </Button>
             </div>
         </Hero>
     )

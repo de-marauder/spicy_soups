@@ -4,6 +4,7 @@ import { useState } from "react";
 import Hero from "../Hero";
 import Navbar from '../Navbar';
 import Sidebar from "../Sidebar";
+import Body from "../Body/Body";
 
 const Site = () => {
     const [sidebar, sidebarToggler] = useState(true);
@@ -20,6 +21,7 @@ const Site = () => {
             <Navbar sidebar={sidebar} doStuff={()=>{sidebarToggler(false)}} />
             <Sidebar sidebar={sidebar} doStuff={()=>{sidebarToggler(true)}} style={style} />
             <Hero />
+            <Body />
         </div>
     )
 }
