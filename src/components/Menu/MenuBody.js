@@ -13,8 +13,8 @@ const MenuBody = () => {
                 <div className="w-full h-32 sm:h-full sm:w-3/12">
                     <h1>Yokuzo</h1>
                 </div>
-                    {/* <hr className="border-orange-300 flex-1 h-px w-full sm:w-96 my-5 sm:rotate-90" /> */}
-                <div className="w-full sm:w-9/12 h-screen overflow-scroll flex flex-wrap justify-center items-center  px-2">
+                    <hr className="border-orange-300 flex-1 h-px w-full sm:w-96 my-2 sm:rotate-90" />
+                <div className="w-full sm:w-9/12 flex flex-wrap justify-center items-center px-2 pt-10">
                     {meals}
                 </div>
             </div>
