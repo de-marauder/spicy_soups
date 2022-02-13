@@ -1,6 +1,6 @@
-import Img1 from '../../../images/agreement.png'
-import Img2 from '../../../images/commercial.png'
-import Img3 from '../../../images/investment.png'
+import Img1 from '../../../../images/agreement.png'
+import Img2 from '../../../../images/commercial.png'
+import Img3 from '../../../../images/investment.png'
 
 const Why = () => {
 

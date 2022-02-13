@@ -2,7 +2,8 @@ import React from 'react';
 
 // import classes from './Input.module.css'
 
-const input = (props) => {
+const Input = (props) => {
+    const style = props.className ? props.className : "" 
     return (
         (props.type === 'textarea') ?
             <textarea className="bg-inherit col-span-2 border-2 rounded-2xl px-3 py-2 border-orange-600"
@@ -13,7 +14,7 @@ const input = (props) => {
                 required={props.required}
                 placeholder={props.placeholder}
                 onChange={props.update}></textarea> :
-            <input className="bg-inherit border-2 rounded-2xl px-3 py-2 border-orange-600"
+            <input className={style + " bg-inherit border-2 rounded-2xl px-3 py-2 border-orange-600"}
                 name={props.name}
                 type={props.type}
                 value={props.value}
@@ -23,4 +24,4 @@ const input = (props) => {
     )
 }
 
-export default input;
+export default Input;

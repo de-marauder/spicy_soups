@@ -1,9 +1,9 @@
-import Button from "../../UI/Button/Button";
-import { Products } from "../../Menu/Products";
+import Button from "../../../UI/Button/Button";
+import { Products } from "../../../Menu/Products";
 
 const PopularDishes = () => {
     const popular = Object.values(Products).slice(0, 5)
-
+    const buttonStyle = " hover:relative hover:top-1 "
 
     const dishes = popular.map((el, id) => {
         return (
@@ -14,7 +14,7 @@ const PopularDishes = () => {
                     <hr className="my-5 border-black" />
                     <p>{el.desc.slice(0, 50)}</p>
                     <strong className="my-5 block">Price: <span className="line-through">N</span>{el.price.slice(2)}</strong>
-                    <Button className="text-sm mb-2">Add to Cart</Button>
+                    <Button className={"text-sm mb-2 " + buttonStyle}>Add to Cart</Button>
                 </div>
             </div>
         )
@@ -23,13 +23,13 @@ const PopularDishes = () => {
     return (
     <div className="py-20" >
         <div>
-            <p className="font-festive text-2xl">Relieve your taste buds</p>
+            <p className="font-great text-2xl sm:text-3xl">Relieve your taste buds</p>
             <strong className="font-neon text-orange-600 text-4xl sm:text-6xl md:text-8xl">Popular Dishes</strong>
         </div>
         <div className="flex w-full justify-center p-10 flex-wrap">
             {dishes}
         </div>
-        <Button className="text-xl w-3/4"><strong>Checkout Full Menu</strong></Button>
+        <Button className={"text-xl w-3/4" + buttonStyle}><strong>Checkout Full Menu</strong></Button>
     </div >
     )
 }

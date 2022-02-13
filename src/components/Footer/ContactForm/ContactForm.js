@@ -82,16 +82,18 @@ class ContactForm extends Component {
                 update={(event) => this.inputUpdate(event, id)} />
         })
 
+        const buttonStyle = " hover:relative hover:top-1 "
+
         return (
             <div id='contact-us' className="pt-10">
-                <div className='space-y-3'>
-                    <h1 className='font-gloria underline text-orange-600 text-5xl'><strong>Contact Us</strong></h1>
+                <div className='space-y-3 text-xl'>
+                    <h1 className='font-gloria mb-8 text-orange-600 text-5xl'><strong>Contact Us</strong></h1>
                     <p>Want to make an inquiry? <br /> Fill the form and we'll get back to you shortly.</p>
                     <h4 className='flex justify-center items-center'>
                         <span>
                             <img className='w-5 h-5' src={emailIcon} alt="email-icon" />
                         </span>
-                        <a className='hover:text-orange-300' href={'mailto:ezikeog@gmail.com'}>spicysoups@gmail.com</a>
+                        <a className='hover:text-orange-300 text-base' href={'mailto:ezikeog@gmail.com'}>spicysoups@gmail.com</a>
                     </h4>
 
                     <form
@@ -104,7 +106,7 @@ class ContactForm extends Component {
 
                         <input type="hidden" name="_next" value="http://localhost:3000/spicy_soups" />
                         <input type="hidden" name="_captcha" value="false" />
-                        <Button
+                        <Button className={buttonStyle}
                             class='Submit'
                             type='submit'
                         >SUBMIT</Button>

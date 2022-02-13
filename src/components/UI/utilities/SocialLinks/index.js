@@ -3,8 +3,8 @@ import { BsInstagram, BsFacebook } from 'react-icons/bs'
 const SocialLinks = () => {
     return (
         <>
-            <BsInstagram className="hover:text-green-300" />
-            <BsFacebook className="hover:text-green-300" />
+            <BsInstagram className="hover:text-orange-600" />
+            <BsFacebook className="hover:text-orange-600" />
         </>
 
     )
