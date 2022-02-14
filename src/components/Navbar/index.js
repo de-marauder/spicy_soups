@@ -24,7 +24,7 @@ const Navbar = (props) => {
                             Menu
                             </li>
                     </Link>
-                    <Link to={home + "/"}>
+                    <Link to={home + "/checkout"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
                             Checkout
                             </li>

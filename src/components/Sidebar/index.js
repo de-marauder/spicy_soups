@@ -6,7 +6,7 @@ import SocialLinks from "../UI/utilities/SocialLinks";
 
 
 
-const home = "spicy_soups/";
+const home = "/spicy_soups";
 
 const Sidebar = (props) => {
 
@@ -25,7 +25,7 @@ const Sidebar = (props) => {
                     <Link to={home + "/menu"}>Menu</Link>
                 </li>
                 <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
-                    <Link to={home + "/"}>Checkout</Link>
+                    <Link to={home + "/checkout"}>Checkout</Link>
                 </li>
             </ul>
             <hr className="w-3/4 m-auto" />

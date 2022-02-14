@@ -9,6 +9,7 @@ import Sidebar from "../Sidebar";
 import Footer from "../Footer/Footer";
 import Home from "../Home/Home";
 import Menu from "../Menu";
+import CheckOut from "../Checkout/Checkout";
 
 
 const home = "/spicy_soups"
@@ -29,6 +30,7 @@ const Site = () => {
             <Routes>
                 <Route path={home + '/'} exact element={<Home/>} />
                 <Route path={home + '/menu'} exact element={<Menu/>} />
+                <Route path={home + '/checkout'} exact element={<CheckOut/>} />
             </Routes>
             
             
