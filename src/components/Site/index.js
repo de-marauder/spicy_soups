@@ -10,6 +10,8 @@ import Footer from "../Footer/Footer";
 import Home from "../Home/Home";
 import Menu from "../Menu";
 
+
+const home = "/spicy_soups"
 const Site = () => {
     const [sidebar, sidebarToggler] = useState(true);
 
@@ -25,8 +27,8 @@ const Site = () => {
             <Navbar sidebar={sidebar} doStuff={()=>{sidebarToggler(false)}} />
             <Sidebar sidebar={sidebar} doStuff={()=>{sidebarToggler(true)}} style={style} />
             <Routes>
-                <Route path='/' exact element={<Home/>} />
-                <Route path='/menu' exact element={<Menu/>} />
+                <Route path={home + '/'} exact element={<Home/>} />
+                <Route path={home + '/menu'} exact element={<Menu/>} />
             </Routes>
             
             
