@@ -1,10 +1,9 @@
-import classes from './Backdrop.module.css'
 
-const backdrop = (props) => {
+const Backdrop = (props) => {
     
     return (
-        <div onClick={props.doStuff} style={props.style} className={classes.Backdrop}>{props.children}</div>
+        <div onClick={props.doStuff} className={`bg-black/80 fixed w-screen h-screen ${props.backdropClass}`}>{props.children}</div>
     )
 }
 
-export default backdrop;
+export default Backdrop;

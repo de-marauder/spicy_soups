@@ -1,12 +1,18 @@
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store/store';
+
 import Site from './components/Site';
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <Site />
-    </BrowserRouter>
+    <Provider store={store} >
+      <BrowserRouter>
+        <Site />
+      </BrowserRouter>
+    </Provider>
+
   );
 }
 

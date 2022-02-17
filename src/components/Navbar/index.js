@@ -1,13 +1,26 @@
 import React from "react";
 import { NavLink as Link } from "react-router-dom"
+import { useSelector } from "react-redux";
 
 import { CgMenuGridR } from "react-icons/cg"
+import { BsFillCartFill } from "react-icons/bs"
 
 import SocialLinks from "../UI/utilities/SocialLinks";
 
 
 const home = "/spicy_soups"
 const Navbar = (props) => {
+
+    const counter = useSelector((state) => state.cartReducer.counter)
+    // console.log(counter)
+
+    const cartCounter = counter ?
+        (
+            <p className="flex items-center">
+                <BsFillCartFill />
+                <span className=" text-xs text-center bg-orange-600 px-1 rounded-full">{counter}</span>
+            </p>
+        ) : null
 
     return (
         props.sidebar ? (
@@ -17,26 +30,31 @@ const Navbar = (props) => {
                     <Link to={home + "/"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
                             Home
-                            </li>
+                        </li>
                     </Link>
                     <Link to={home + "/menu"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
                             Menu
-                            </li>
+                        </li>
                     </Link>
-                    <Link to={home + "/checkout"}>
+                    <Link className={"flex"} to={home + "/checkout"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
                             Checkout
-                            </li>
+                        </li>
+                        {cartCounter}
                     </Link>
                 </ul>
                 <div className='hidden p-6 sm:flex space-x-5 '>
                     <SocialLinks />
                 </div>
-                <CgMenuGridR
-                    onClick={props.doStuff}
-                    className="text-white text-4xl absolute top-5 sm:top-8 right-6 hover:text-green-600 sm:hidden"
-                />
+                <>
+                    {counter ? <span className="absolute top-5 sm:top-8 right-12 z-10 text-xs text-center bg-orange-600 px-1 rounded-full">{counter}</span>
+                        : null}
+                    <CgMenuGridR
+                        onClick={props.doStuff}
+                        className="text-white text-4xl absolute top-5 sm:top-8 right-6 hover:text-green-600 sm:hidden"
+                    />
+                </>
             </nav>) : null
     )
 }
