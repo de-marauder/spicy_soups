@@ -8,7 +8,7 @@ import SocialLinks from "../UI/utilities/SocialLinks";
 import Backdrop from "../UI/Backdrop/Backdrop"
 
 
-const home = "/spicy_soups";
+const home = "";
 
 const Sidebar = (props) => {
 
