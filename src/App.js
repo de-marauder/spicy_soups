@@ -8,7 +8,9 @@ import Site from './components/Site';
 function App() {
   return (
     <Provider store={store} >
-      <BrowserRouter>
+      <BrowserRouter 
+      basename='spicy_soups'
+      >
         <Site />
       </BrowserRouter>
     </Provider>

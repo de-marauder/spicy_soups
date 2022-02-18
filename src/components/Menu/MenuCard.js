@@ -1,7 +1,6 @@
-import {
-    useDispatch,
-    useSelector
-} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+
+import N from "../UI/utilities/Naira/N"
 
 const MenuCard = (props) => {
 
@@ -9,8 +8,8 @@ const MenuCard = (props) => {
     const dispatch = useDispatch()
 
     let btnDisabled = true
-    console.log(itemCounter)
-    console.log(props.el)
+    // console.log(itemCounter)
+    // console.log(props.el)
     if (itemCounter) {
         // console.log("itemCounter not empty")
         btnDisabled = itemCounter[props.el.id] ? false : true
@@ -25,7 +24,7 @@ const MenuCard = (props) => {
                 <p className="" id='ingred'>{props.el.desc.slice(0, 70)}</p>
                 <div className="" id='price'>
                     <div>
-                        <strong>Price: <span className="line-through">N</span>{props.el.price.slice(2)}</strong>
+                        <strong>Price: <N />{props.el.price.slice(2)}</strong>
                     </div>
                     <div className="text-white bg-stone-500 my-2 flex justify-between sm:justify-around">
 

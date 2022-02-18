@@ -1,6 +1,5 @@
 import Hero from '../Hero'
 import MenuBody from './MenuBody';
-// import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
 const Menu = () => {

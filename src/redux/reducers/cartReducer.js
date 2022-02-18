@@ -21,7 +21,7 @@ export const cartReducer = (state = initialState, action) => {
                 // console.log("ADD TO CART", newItemCounter[item.id], item.id)
 
                 newItemCounter[item.id] = (newItemCounter[item.id] || 0) + 1
-                
+
                 // console.log("ADD ", newItemCounter[item.id])
             })
             console.log(newItemCounter)
@@ -39,20 +39,29 @@ export const cartReducer = (state = initialState, action) => {
             newCart = [...state.cart]
 
             let ItemCounter = { ...state.itemCounter }
+
             if (newCart.indexOf(action.data) !== -1) {
                 newCart.splice(newCart.indexOf(action.data), 1)
+                console.log("itemCounter has items", ItemCounter)
             }
             if (ItemCounter[action.data.id]) {
                 // console.log(ItemCounter)
                 ItemCounter[action.data.id] = ItemCounter[action.data.id] - 1
-                // console.log(ItemCounter)
+                console.log("meal in itemCounter", ItemCounter)
+                console.log(ItemCounter[action.data.id])
+
+                if (ItemCounter[action.data.id] === 0) {
+                    console.log(ItemCounter[action.data.id])
+                    delete ItemCounter[action.data.id]
+                    console.log("meal is not in itemCounter", ItemCounter)
+                }
             }
             // console.log(ItemCounter)
             return {
                 ...state,
                 cart: newCart,
                 itemCounter: {
-                    ...state.itemCounter,
+                    // ...state.itemCounter,
                     ...ItemCounter
                 },
                 counter: newCart.length

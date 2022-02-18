@@ -574,6 +574,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-column: span 2 / span 2;
 }
 
+.float-right {
+  float: right;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -606,6 +610,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .mb-10 {
@@ -662,6 +671,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .grid {
@@ -723,6 +736,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 0.75rem;
 }
 
+.h-48 {
+  height: 12rem;
+}
+
+.h-min {
+  height: -webkit-min-content;
+  height: min-content;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
 .max-h-max {
   max-height: -webkit-max-content;
   max-height: max-content;
@@ -730,6 +756,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-max {
+  min-height: -webkit-max-content;
+  min-height: max-content;
+}
+
+.min-h-full {
+  min-height: 100%;
 }
 
 .w-min {
@@ -807,6 +842,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 0.75rem;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
+.min-w-max {
+  min-width: -webkit-max-content;
+  min-width: max-content;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -829,6 +881,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-row {
   flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
 }
 
 .flex-col {
@@ -889,6 +945,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-x-reverse: 0;
   margin-right: calc(1.25rem * var(--tw-space-x-reverse));
   margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
 }
 
 .overflow-hidden {
@@ -1037,6 +1099,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
+.bg-stone-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(231 229 228 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1055,6 +1122,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(120 113 108 / 0));
 }
 
+.from-red-600 {
+  --tw-gradient-from: #dc2626;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(220 38 38 / 0));
+}
+
 .via-black\/90 {
   --tw-gradient-stops: var(--tw-gradient-from), rgb(0 0 0 / 0.9), var(--tw-gradient-to, rgb(0 0 0 / 0));
 }
@@ -1065,6 +1137,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .to-orange-600 {
   --tw-gradient-to: #ea580c;
+}
+
+.to-red-100 {
+  --tw-gradient-to: #fee2e2;
+}
+
+.to-red-300 {
+  --tw-gradient-to: #fca5a5;
 }
 
 .p-10 {
@@ -1093,6 +1173,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-20 {
+  padding: 5rem;
 }
 
 .py-32 {
@@ -1150,6 +1234,31 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 0.25rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .pb-24 {
   padding-bottom: 6rem;
 }
@@ -1188,6 +1297,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pt-20 {
   padding-top: 5rem;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
 }
 
 .text-left {
@@ -1443,6 +1556,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(234 88 12 / 0));
 }
 
+.hover\:to-red-600:hover {
+  --tw-gradient-to: #dc2626;
+}
+
 .hover\:pb-4:hover {
   padding-bottom: 1rem;
 }
@@ -1538,6 +1655,18 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 6rem;
   }
 
+  .sm\:h-36 {
+    height: 9rem;
+  }
+
+  .sm\:h-40 {
+    height: 10rem;
+  }
+
+  .sm\:h-44 {
+    height: 11rem;
+  }
+
   .sm\:w-2\/3 {
     width: 66.666667%;
   }
@@ -1572,6 +1701,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:w-5\/12 {
     width: 41.666667%;
+  }
+
+  .sm\:w-3\/4 {
+    width: 75%;
+  }
+
+  .sm\:w-10\/12 {
+    width: 83.333333%;
+  }
+
+  .sm\:w-1\/2 {
+    width: 50%;
   }
 
   .sm\:rotate-90 {
@@ -1637,6 +1778,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-size: 3rem;
     line-height: 1;
   }
+
+  .sm\:text-8xl {
+    font-size: 6rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1650,6 +1796,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:mr-10 {
     margin-right: 2.5rem;
+  }
+
+  .md\:h-40 {
+    height: 10rem;
   }
 
   .md\:w-8\/12 {
@@ -1666,6 +1816,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:w-4\/12 {
     width: 33.333333%;
+  }
+
+  .md\:w-3\/4 {
+    width: 75%;
+  }
+
+  .md\:w-1\/4 {
+    width: 25%;
   }
 
   .md\:p-3 {
@@ -1689,6 +1847,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .md\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 
