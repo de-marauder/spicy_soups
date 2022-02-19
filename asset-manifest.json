@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/spicy_soups/static/js/main.dc06858e.js",
+    "main.js": "/spicy_soups/static/js/main.b6887775.js",
     "static/media/vegetables-set-left-black-slate.jpg": "/spicy_soups/static/media/vegetables-set-left-black-slate.f28aca96eef193d9160d.jpg",
     "static/media/Afang-soup-16.jpg": "/spicy_soups/static/media/Afang-soup-16.211d801921c2cd19b42e.jpg",
     "static/media/Nigerian jollof rice and fish.jpg": "/spicy_soups/static/media/Nigerian jollof rice and fish.69bca17e8544280d1321.jpg",
@@ -16,9 +16,9 @@
     "static/media/images.jfif": "/spicy_soups/static/media/images.6b9914b9b94bc3a50c77.jfif",
     "static/media/fufu and soup.jfif": "/spicy_soups/static/media/fufu and soup.b0dc5e6243e1c74f4424.jfif",
     "index.html": "/spicy_soups/index.html",
-    "main.dc06858e.js.map": "/spicy_soups/static/js/main.dc06858e.js.map"
+    "main.b6887775.js.map": "/spicy_soups/static/js/main.b6887775.js.map"
   },
   "entrypoints": [
-    "static/js/main.dc06858e.js"
+    "static/js/main.b6887775.js"
   ]
 }
