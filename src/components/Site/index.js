@@ -10,7 +10,10 @@ import Home from "../Home/Home";
 import Menu from "../Menu";
 import Cart from "../Checkout/Cart/Cart";
 import CheckOut from "../Checkout/Checkout";
-import ContactInfo from "../Checkout/Cart/ContactInfo/ContactInfo";
+import ContactInfo from "../Checkout/ContactInfo";
+import ContactInfoForm from "../Checkout/ContactInfo/ContactInfo";
+import Payment from "../Checkout/ContactInfo/Payment";
+import Success from "../Checkout/ContactInfo/Success";
 
 
 // const home = "/spicy_soups"
@@ -33,13 +36,14 @@ const Site = () => {
                 <Route path='/menu' exact element={<Menu />} />
                 <Route path='/checkout' element={<CheckOut />} >
                     <Route index={true} element={<Cart />} />
-                    <Route path='contact-info'  element={<ContactInfo />} />
+                    <Route path='contact-info' element={<ContactInfo />} >
+                        <Route index={true} element={<ContactInfoForm />} />
+                        <Route path='payment' index={true} element={<Payment />} />
+                        <Route path='payment/success' index={true} element={<Success />} />
+                    </Route>
                 </Route>
             </Routes>
 
-
-            {/* <Hero />
-            <Body /> */}
             <Footer />
         </div>
     )

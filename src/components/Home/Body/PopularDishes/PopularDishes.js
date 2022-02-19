@@ -1,7 +1,14 @@
+import { useDispatch } from "react-redux";
+import {NavLink} from "react-router-dom"
+
 import Button from "../../../UI/Button/Button";
 import { Products } from "../../../Menu/Products";
+import N from "../../../UI/utilities/Naira/N";
 
 const PopularDishes = () => {
+
+    const dispatch = useDispatch()
+
     const popular = Object.values(Products).slice(0, 5)
     const buttonStyle = " hover:relative hover:top-1 "
 
@@ -13,24 +20,26 @@ const PopularDishes = () => {
                     <strong className="text-xl">{el.meal}</strong>
                     <hr className="my-5 border-black" />
                     <p>{el.desc.slice(0, 50)}</p>
-                    <strong className="my-5 block">Price: <span className="line-through">N</span>{el.price.slice(2)}</strong>
-                    <Button className={"text-sm mb-2 " + buttonStyle}>Add to Cart</Button>
+                    <strong className="my-5 block">Price: <N />{el.price.slice(2)}</strong>
+                    <Button doStuff={() => dispatch({ type: "ADD_ITEM_TO_CART", data: el })} className={"text-sm mb-2 " + buttonStyle}>Add to Cart</Button>
                 </div>
             </div>
         )
     })
 
     return (
-    <div className="py-20" >
-        <div>
-            <p className="font-great text-2xl sm:text-3xl">Relieve your taste buds</p>
-            <strong className="font-neon text-orange-600 text-4xl sm:text-6xl md:text-8xl">Popular Dishes</strong>
-        </div>
-        <div className="flex w-full justify-center p-10 flex-wrap">
-            {dishes}
-        </div>
-        <Button className={"text-xl w-3/4" + buttonStyle}><strong>Checkout Full Menu</strong></Button>
-    </div >
+        <div className="py-20" >
+            <div>
+                <p className="font-great text-2xl sm:text-3xl">Relieve your taste buds</p>
+                <strong className="font-neon text-orange-600 text-4xl sm:text-6xl md:text-8xl">Popular Dishes</strong>
+            </div>
+            <div className="flex w-full justify-center p-10 flex-wrap">
+                {dishes}
+            </div>
+            <NavLink to='/menu' >
+                <Button className={"text-xl w-3/4" + buttonStyle}><strong>Checkout Full Menu</strong></Button>
+            </NavLink>
+        </div >
     )
 }
 

@@ -43,11 +43,11 @@ const Cart = () => {
 
         return (
             itemCounter && orderedItems[el] ?
-                (<tr key={el} className="">
-                    <td className="p-2 pl-5 w-80">
+                (<tr key={el} className="border-b-2 border-stone-300">
+                    <td className="py-2 sm:pl-5 w sm:w-80">
                         <CartProduct el={orderedItems[el]} />
                     </td>
-                    <td className="p-2 pl-5 text-left">
+                    <td className="p-2 sm:pl-5 text-center sm:text-left">
                         {/* <input  value={itemCounter[el]} /> */}
                         <div className="text-white rounded-xl overflow-hidden bg-stone-500 my-2 flex justify-between sm:justify-around">
 
@@ -66,11 +66,11 @@ const Cart = () => {
                                 id='add to cart'>+</button>
                         </div>
                     </td>
-                    <td className="p-2 pl-5 text-left">
+                    <td className="p-2 sm:pl-5  text-center sm:text-left">
                         <N />
                         {orderedItems[el].price.slice(2)}
                     </td>
-                    <td className="p-2 pl-5 text-left">
+                    <td className="p-2 sm:pl-5  text-center sm:text-left">
                         <N />{itemCounter[orderedItems[el].id] * orderedItems[el].price.slice(2)}</td>
                 </tr>) : null
         )
@@ -86,13 +86,13 @@ const Cart = () => {
             <h1 className="font-festive font-black text-center text-4xl sm:text-7xl text-orange-600">Cart</h1>
 
             <div>
-                <table className="my-10 mx-auto w-11/12 sm:w-10/12 md:w-3/4 rounded-xl bg-c-green overflow-hidden text-black">
+                <table className="text-sm sm:text-base my-10 mx-auto w-11/12 sm:w-10/12 md:w-3/4 rounded-xl bg-c-green overflow-hidden text-black">
                     <thead className="text-white">
                         <tr className="">
-                            <th className="p-2 pl-5 text-left w-1/2">Product</th>
-                            <th className="p-2 pl-5 text-left">Quantity</th>
-                            <th className="p-2 pl-5 text-left">Price</th>
-                            <th className="p-2 pl-5 text-left">Subtotal</th>
+                            <th className="p-2 sm:pl-5  text-center sm:text-left w-1/2">Product</th>
+                            <th className="p-2 sm:pl-5  text-center sm:text-left">Quantity</th>
+                            <th className="p-2 sm:pl-5  text-center sm:text-left">Price</th>
+                            <th className="p-2 sm:pl-5  text-center sm:text-left">Subtotal</th>
                         </tr>
                     </thead>
 

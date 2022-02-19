@@ -6,7 +6,7 @@ const Input = (props) => {
     const style = props.className ? props.className : "" 
     return (
         (props.type === 'textarea') ?
-            <textarea className="bg-inherit col-span-2 border-2 rounded-2xl px-3 py-2 border-orange-600"
+            <textarea className={style + " bg-inherit col-span-2 border-2 rounded-2xl px-3 py-2 border-orange-600"}
                 rows={5}
                 name={props.name}
                 type={props.type}

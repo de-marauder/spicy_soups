@@ -73,13 +73,14 @@ class ContactForm extends Component {
                     placeholder = ''
             }
 
-            return <Input key={id}
+            return (<Input key={id}
+                className="mb-2 w-full"
                 name={name}
                 placeholder={placeholder}
                 type={type}
                 value={this.state[name]}
                 required={required}
-                update={(event) => this.inputUpdate(event, id)} />
+                update={(event) => this.inputUpdate(event, id)} />)
         })
 
         const buttonStyle = " hover:relative hover:top-1 "
@@ -100,7 +101,7 @@ class ContactForm extends Component {
                         className="text-center py-10"
                         action="https://formsubmit.co/ezikeog@gmail.com"
                         method="POST">
-                        <div className='mx-auto mb-5 w-10/12 md:w-8/12 grid grid-cols-2 gap-2'>
+                        <div className='mx-auto mb-5 w-10/12 md:w-8/12 sm:grid sm:grid-cols-2 sm:gap-2'>
                             {input}
                         </div>
 

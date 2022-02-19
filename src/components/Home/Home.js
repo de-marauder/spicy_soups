@@ -2,12 +2,13 @@ import Hero from "../Hero";
 
 import Body from "./Body/Body";
 import Button from "../UI/Button/Button";
+import { NavLink } from "react-router-dom";
 
 
 const Home = () => {
     return (
         <>
-            <Hero style={{height: "110vh"}}>
+            <Hero style={{ height: "110vh" }}>
                 <div className='absolute left-2 sm:left-16 md:left-20 top-1/4 md:top-40 pr-2 md:pr-4 pb-8 border-lime-600 border-b-4 border-r-4'>
                     <h1 className='mb-5 font-cabinSketch sm:text-7xl md:text-8xl text-5xl font-semibold'>Spicy soups</h1>
                     <h2 className="font-festive text-4xl sm:text-6xl md:text-7xl">The Naija way</h2>
@@ -21,9 +22,11 @@ const Home = () => {
                         <p>.</p>
                         <p>.</p>
                     </div>
-                    <Button className="text-2xl hover:relative hover:top-1 ">
-                        Place an order
-                    </Button>
+                    <NavLink className={"w-fit  mx-auto"} to='/menu'>
+                        <Button className="text-2xl hover:relative hover:top-1 ">
+                            Place an order
+                        </Button>
+                    </NavLink>
                 </div>
             </Hero>
             <Body />

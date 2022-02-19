@@ -34,15 +34,9 @@ const CheckOut = () => {
                     <strong>Check Out</strong>
                 </h1>
             </Hero>
-            
+
             <Outlet />
-            {/* <Cart /> */}
-            {/* <Routes> */}
-            {/* <Route path={home + '/cart'} element={<Cart />} /> */}
-            {/* {root} */}
-            {/* <Route path={route.path + '/contact-info'} element={<ContactInfo />} /> */}
-            {/* {contactPage} */}
-            {/* </Routes> */}
+            
         </section>
     )
 }
