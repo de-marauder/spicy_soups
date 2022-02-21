@@ -14,11 +14,11 @@ const footer = () => {
                 </div>
                 <ContactForm />
                 <div className="mb-10">
-                    <p className="flex items-center justify-center space-x-2">
+                    <p className="flex justify-center space-x-2">
                         <IoHomeOutline className="text-orange-500" />
                         <span>Find us at: lorem yada yada 123 place, Nigeria</span>
                     </p>
-                    <p className="flex items-center justify-center space-x-2">
+                    <p className="flex justify-center space-x-2">
                         <IoCallOutline className="text-orange-500" />
                         <span>Call to place an order</span>
                         <a className='underline text-white/30 hover:text-orange-300' href='tel:08165520839'> Click to call</a>

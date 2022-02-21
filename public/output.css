@@ -1720,6 +1720,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 0.25rem;
 }
 
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
 .hover\:border-b-2:hover {
   border-bottom-width: 2px;
 }
@@ -1804,6 +1808,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .active\:bg-orange-600:active {
   --tw-bg-opacity: 1;
   background-color: rgb(234 88 12 / var(--tw-bg-opacity));
+}
+
+.disabled\:hidden:disabled {
+  display: none;
 }
 
 .disabled\:border-0:disabled {
@@ -1945,6 +1953,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:w-80 {
     width: 20rem;
+  }
+
+  .sm\:w-2\/4 {
+    width: 50%;
   }
 
   .sm\:rotate-90 {
