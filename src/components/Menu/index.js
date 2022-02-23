@@ -40,7 +40,7 @@ const Menu = () => {
     }
 
     const search = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         const searchResultArray = []
         console.log(event.target.value)
         Object.values(Products).forEach((el, id) => {
