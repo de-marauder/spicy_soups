@@ -15,20 +15,20 @@ const Menu = () => {
 
     const loadMore = () => {
         console.log("loadmore active")
-        
+
         let meal = meals
         // console.log(mealno)
         if (mealno <= Object.keys(Products).length) {
             if (Object.keys(Products).length - mealno > 3) {
                 setMealno(mealno + 3)
-                mealArray = Object.values(Products).slice(0, mealno+3)
+                mealArray = Object.values(Products).slice(0, mealno + 3)
                 console.log("setting meal number")
                 console.log(mealno)
             } else if (Object.keys(Products).length - mealno < 3) {
-                mealArray = Object.values(Products).slice(0, mealno+1)
+                mealArray = Object.values(Products).slice(0, mealno + 1)
                 setMealno(mealno + 1)
             }
-            
+
             console.log(mealArray)
             meal = mealArray.map((el, id) => <MenuCard key={id} el={el} />)
             setMeals(meal)
@@ -39,6 +39,28 @@ const Menu = () => {
         }
     }
 
+    const search = (event) => {
+        event.preventDefault()
+        const searchResultArray = []
+        console.log(event.target.value)
+        Object.values(Products).forEach((el, id) => {
+            console.log(el, id)
+            console.log(el.ingred.split(' '))
+            if (el.ingred.includes(event.target.value)) {
+                console.log("searched item in ingred")
+                searchResultArray.push(el)
+            }
+        })
+        console.log(searchResultArray)
+        const meal = (searchResultArray.length > 0) ?
+            searchResultArray.map((el, id) => <MenuCard key={id} el={el} />)
+            : <div className="text-center">
+                <h1 className="text-3xl mb-10">Your Searched item is not available. </h1>
+                <p>Try again</p>
+            </div>
+        console.log(meal)
+        setMeals(meal)
+    }
 
     useEffect(() => {
         console.log("useEffect starts")
@@ -54,11 +76,11 @@ const Menu = () => {
                     <strong>Our Menu</strong>
                 </h1>
                 <div className="w-10/12 sm:w-2/3 mx-auto my-5 relative">
-                    <input className="w-full text-black border-0 p-2 px-10 rounded-2xl bg-white border-c-green" name="search" type="search" placeholder="Search" />
+                    <input onChange={(event) => search(event)} name="search" type="search" placeholder="Search" className="w-full text-black border-0 p-2 px-10 rounded-2xl bg-white border-c-green" />
                     <Button className="text-white bg-gradient-to-r from-stone-500 to-orange-600 hover:from-orange-600 w-24 border-0 border-l-0 absolute top-0 right-0 py-2" >Search</Button>
                 </div>
             </Hero>
-            <MenuBody loadMore={loadMore} disabled={(mealno >= Object.keys(Products).length) ? true : false} >{meals}</MenuBody>
+            <MenuBody loadMore={loadMore} search={search} disabled={(mealno >= Object.keys(Products).length) ? true : false} >{meals}</MenuBody>
         </>
     )
 }
