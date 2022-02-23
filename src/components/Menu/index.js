@@ -46,7 +46,7 @@ const Menu = () => {
         Object.values(Products).forEach((el, id) => {
             console.log(el, id)
             console.log(el.ingred.split(' '))
-            if (el.ingred.includes(event.target.value)) {
+            if (el.ingred.includes(event.target.value.toLowerCase()) || el.meal.toLowerCase().includes(event.target.value.toLowerCase()) ) {
                 console.log("searched item in ingred")
                 searchResultArray.push(el)
             }

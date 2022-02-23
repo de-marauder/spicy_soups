@@ -37,7 +37,7 @@ export const Products = {
         id: 'meal4',
         Img: Img4,
         meal: 'Afang soup',
-        ingred: 'towel meat kanda kpomo',
+        ingred: 'towel afang meat kanda kpomo',
         price: 'N 1000',
         desc: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
     },
