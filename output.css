@@ -644,6 +644,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 2.5rem;
 }
 
+.mr-0 {
+  margin-right: 0px;
+}
+
 .block {
   display: block;
 }
@@ -713,6 +717,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-48 {
   height: 12rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-max {
@@ -801,6 +809,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-20 {
   width: 5rem;
+}
+
+.w-max {
+  width: -webkit-max-content;
+  width: max-content;
+}
+
+.w-0 {
+  width: 0px;
 }
 
 .flex-1 {
@@ -911,6 +928,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .overflow-scroll {
   overflow: scroll;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .rounded-full {
@@ -1510,6 +1531,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: fit-content;
 }
 
+.before\:w-max::before {
+  content: var(--tw-content);
+  width: -webkit-max-content;
+  width: max-content;
+}
+
 .before\:rounded-3xl::before {
   content: var(--tw-content);
   border-radius: 1.5rem;
@@ -1882,6 +1909,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .sm\:rounded-3xl {
+    border-radius: 1.5rem;
   }
 
   .sm\:p-5 {
