@@ -3,7 +3,6 @@ import React from 'react';
 import {Hero} from './StyledHero';
 
 const hero = (props) => { 
-    // console.log(<Hero/>)
     return (
         <Hero style={props.style} className={props.styles + " relative cursor-default flex justify-center items-center overflow-hidden text-white"}>
             {props.children}

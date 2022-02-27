@@ -37,7 +37,7 @@ const Cart = () => {
             }
         })
 
-        subTotalArr[el] = itemCounter && orderedItems[el] ? (itemCounter[orderedItems[el].id] * orderedItems[el].price.slice(2)) : 0
+        subTotalArr[el] = itemCounter && orderedItems[el] ? (itemCounter[orderedItems[el].id] * orderedItems[el].price) : 0
         // console.log("subTotal array", subTotalArr)
         // console.log("After cart loop", orderedItems, el)
 
@@ -68,10 +68,10 @@ const Cart = () => {
                     </td>
                     <td className="p-2 sm:pl-5  text-center sm:text-left">
                         <N />
-                        {orderedItems[el].price.slice(2)}
+                        {orderedItems[el].price}
                     </td>
                     <td className="p-2 sm:pl-5  text-center sm:text-left">
-                        <N />{itemCounter[orderedItems[el].id] * orderedItems[el].price.slice(2)}</td>
+                        <N />{itemCounter[orderedItems[el].id] * orderedItems[el].price}</td>
                 </tr>) : null
         )
     })
@@ -111,7 +111,7 @@ const Cart = () => {
                         <p>Subtotal</p>
                         <p><N />{subTotal}</p>
                     </div>
-                    <div className="flex justify-between p-2">
+                    <div className="flex text-sm text-stone-400 justify-between p-2">
                         <p>Delivery</p>
                         <p><N />{deliveryFee}</p>
                     </div>

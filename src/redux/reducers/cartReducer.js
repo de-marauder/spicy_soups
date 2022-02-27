@@ -15,14 +15,10 @@ export const cartReducer = (state = initialState, action) => {
             newCart = [...state.cart]
             newCart.push(action.data)
             let newItemCounter = {};
-            // newItemCounter = { ...state.itemCounter }
             newCart.forEach((item) => {
-                // console.log(newItemCounter)
-                // console.log("ADD TO CART", newItemCounter[item.id], item.id)
 
                 newItemCounter[item.id] = (newItemCounter[item.id] || 0) + 1
 
-                // console.log("ADD ", newItemCounter[item.id])
             })
             console.log(newItemCounter)
             return {
@@ -42,26 +38,18 @@ export const cartReducer = (state = initialState, action) => {
 
             if (newCart.indexOf(action.data) !== -1) {
                 newCart.splice(newCart.indexOf(action.data), 1)
-                console.log("itemCounter has items", ItemCounter)
             }
             if (ItemCounter[action.data.id]) {
-                // console.log(ItemCounter)
                 ItemCounter[action.data.id] = ItemCounter[action.data.id] - 1
-                console.log("meal in itemCounter", ItemCounter)
-                console.log(ItemCounter[action.data.id])
 
                 if (ItemCounter[action.data.id] === 0) {
-                    console.log(ItemCounter[action.data.id])
                     delete ItemCounter[action.data.id]
-                    console.log("meal is not in itemCounter", ItemCounter)
                 }
             }
-            // console.log(ItemCounter)
             return {
                 ...state,
                 cart: newCart,
                 itemCounter: {
-                    // ...state.itemCounter,
                     ...ItemCounter
                 },
                 counter: newCart.length
@@ -70,7 +58,18 @@ export const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: [],
-                counter: 0
+                counter: 0,
+                itemCounter: null
+            }
+        case 'SUBMIT_CONTACT_INFO':
+            return {
+                ...state,
+                contactInfo: {...action.data}
+            }
+        case 'DELETE_CONTACT_INFO':
+            return {
+                ...state,
+                contactInfo: null,
             }
         case 'CHECKOUT':
             return {

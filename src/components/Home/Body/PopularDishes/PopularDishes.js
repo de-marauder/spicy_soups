@@ -13,44 +13,29 @@ const PopularDishes = () => {
 
     const dispatch = useDispatch()
 
-    // const popular = Object.values(Products).slice(0, 5)
     const buttonStyle = " hover:relative hover:top-1 "
 
     const [products, setProducts] = useState({})
-    // console.log(products)
-
-    // const [mealno, setMealno] = useState(4);
 
     let popular = products && Object.values(products).slice(0, 5);
     console.log(products)
     console.log(popular)
 
-    // const [meals, setMeals] = useState((popular.length > 0) ? popular.map((el, id) => <MenuCard key={id} el={el} />) : '');
 
     useEffect(() => {
-        console.log("useEffect starts");
-
         onValue(ref(getDatabase(app), 'Products/'), (snapshot) => {
-            console.log("product loading")
             const newProducts = { ...snapshot.val() }
             setProducts(newProducts)
-            console.log('use effect products')
-            // const newMealArray = Object.values(newProducts).slice(0, 4);
-
-            // setMeals(newMealArray.map((el, id) => <MenuCard key={id} el={el} />))
-            // console.log('use effect meals')
         })
-
-        console.log("useEffect ENDS")
     }, [])
 
     const dishes = popular.map((el, id) => {
         return (
-            <div key={id} className="shadow-xl text-black rounded-xl mb-5 sm:mr-5 sm:w-6/12 md:w-5/12 lg:w-3/12 px-3 py-5 sm:p-5 bg-white">
+            <div key={id} className="shadow-xl text-white rounded-xl mb-5 sm:mr-5 sm:w-6/12 md:w-5/12 lg:w-3/12 px-3 py-5 sm:p-5 ">
                 <img className="rounded-full h-32 w-32 mb-4 mx-auto" src={el.img} alt='Popular dish' />
                 <div>
-                    <strong className="text-xl">{el.meal}</strong>
-                    <hr className="my-5 border-black" />
+                    <strong className="text-xl">{el.name}</strong>
+                    <hr className="my-5 border-white" />
                     <p>{el.desc.slice(0, 50)}</p>
                     <strong className="my-5 block">Price: <N />{el.price}</strong>
                     <Button doStuff={() => dispatch({ type: "ADD_ITEM_TO_CART", data: el })} className={"text-sm mb-2 " + buttonStyle}>Add to Cart</Button>

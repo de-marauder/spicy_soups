@@ -24,7 +24,7 @@ const Navbar = (props) => {
 
     return (
         props.sidebar ? (
-            <nav className='flex z-50 fixed w-screen text-3xl flex-col sm:flex-row px-3 md:px-10 lg:px-40 sm:items-center sm:justify-between h-20 sm:h-24 text-white shadow bg-c-green'>
+            <nav className='flex z-50 fixed w-screen text-3xl flex-col sm:flex-row px-3 md:px-10 lg:px-40 sm:items-center sm:justify-between h-20 sm:h-24 text-white backdrop-blur-xl bg-gradient-to-r from-c-green to-c-green/10'>
                 <div className="font-sans text-2xl my-auto sm:text-3xl md:text-4xl py-6 text-green-00 font-black ml-4 px-3"><Link to="/">Spicy soups</Link></div>
                 <ul className="sm:flex hidden cursor-pointer text-xl">
                     <Link to={home + "/"}>
@@ -48,8 +48,7 @@ const Navbar = (props) => {
                     <SocialLinks />
                 </div>
                 <div className="flex space-x-4 absolute sm:hidden top-5 sm:top-8 right-6">
-                    {/* {counter ? <span className="absolute top-5 sm:top-8 right-12 z-10 text-xs text-center bg-orange-600 px-1 rounded-full">{counter}</span>
-                        : null} */}
+                
                     <Link to='/checkout'>
                         {cartCounter}
                     </Link>

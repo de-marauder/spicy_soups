@@ -26,7 +26,7 @@ const Sidebar = (props) => {
         !props.sidebar ?
             <>
                 <Backdrop doStuff={props.doStuff} backdropClass="z-30" />
-                <aside className={`z-50 flex sm:hidden pl-3 py-10 justify-around text-white text-3xl flex-col fixed w-3/4 h-screen transition-all bg-black ${props.style}`}>
+                <aside className={`z-50 backdrop-blur-xl flex sm:hidden pl-3 py-10 justify-around text-white text-3xl flex-col fixed w-3/4 h-screen transition-all bg-black/30 ${props.style}`}>
                     <MdRestaurantMenu
                         className="absolute top-8 right-10 hover:text-red-700"
                         onClick={props.doStuff} />

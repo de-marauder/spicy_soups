@@ -19,6 +19,17 @@ export const emptyCart = () => {
     }
 }
 
+export const submitContactInfo = (payload) => {
+    return {
+        type: actionType.SUBMIT_CONTACT_INFO,
+        data: payload
+    }
+}
+export const deleteContactInfo = () => {
+    return {
+        type: actionType.DELETE_CONTACT_INFO,
+    }
+}
 export const checkOut = () => {
     return {
         type: actionType.CHECKOUT,

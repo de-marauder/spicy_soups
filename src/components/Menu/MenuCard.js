@@ -16,9 +16,9 @@ const MenuCard = (props) => {
     }
 
     return (
-        <div className="h-max shadow-2xl rounded-3xl w-full sm:h-max mb-5 sm:mr-5 text-center sm:w-60 flex flex-row items-center sm:flex-col" id='card'>
+        <div className="shadow-2xl h-fit rounded-3xl w-full mb-5 sm:mr-5 text-center sm:w-60 flex flex-row items-center justify-between sm:flex-col" id='card'>
             <div className="overflow-hidden h-40 w-1/3 flex items-center sm:w-full sm:h-60 rounded-3xl"><img className="h-full w-full" id='card img' src={props.el.img} alt="meal" /></div>
-            <div className="w-full px-4 py-1 max-h-max" id='card desc' >
+            <div className="w-full px-4 py-1" id='card desc' >
                 <p className="text-xl" id='name'><strong>{props.el.name}</strong></p>
                 <hr className="border-orange-300 my-2" />
                 <p className="" id='ingred'>{props.el.ingred.split(' ').map((el, id)=>{return " " + el}).join()}</p>

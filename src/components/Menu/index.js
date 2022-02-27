@@ -14,7 +14,7 @@ import { app } from '../../firebase-config';
 
 const Menu = () => {
 
-    let [products, setProducts] = useState({})
+    const [products, setProducts] = useState({})
     // console.log(products)
 
     const [mealno, setMealno] = useState(4);
@@ -27,10 +27,10 @@ const Menu = () => {
     // setMeals(mealArray.map((el, id) => <MenuCard key={id} el={el} />))
 
     // meals = mealArray.map((el, id) => <MenuCard key={id} el={el} />)
-    console.log(meals)
+    // console.log(meals)
 
     const loadMore = () => {
-        console.log("loadmore active")
+        // console.log("loadmore active")
 
         let meal = meals
         // console.log(mealno)
@@ -38,18 +38,18 @@ const Menu = () => {
             if (Object.keys(products).length - mealno > 3) {
                 setMealno(mealno + 3)
                 mealArray = Object.values(products).slice(0, mealno + 3)
-                console.log("setting meal number")
-                console.log(mealno)
+                // console.log("setting meal number")
+                // console.log(mealno)
             } else if (Object.keys(products).length - mealno < 3) {
                 mealArray = Object.values(products).slice(0, mealno + 1)
                 setMealno(mealno + 1)
             }
 
-            console.log(mealArray)
+            // console.log(mealArray)
             meal = mealArray.map((el, id) => <MenuCard key={id} el={el} />)
             setMeals(meal)
-            console.log("setting meal")
-            console.log(meal)
+            // console.log("setting meal")
+            // console.log(meal)
         } else
             setMeals(meal)
     }
@@ -60,39 +60,29 @@ const Menu = () => {
         const searchResultArray = []
         console.log(event.target.value)
         Object.values(products).forEach((el, id) => {
-            console.log(el, id)
-            console.log(el.ingred.split(' '))
             if (el.ingred.includes(event.target.value.toLowerCase()) || el.name.toLowerCase().includes(event.target.value.toLowerCase())) {
                 console.log("searched item in ingred")
                 searchResultArray.push(el)
             }
         })
-        console.log(searchResultArray)
         const meal = (searchResultArray.length > 0) ?
             searchResultArray.map((el, id) => <MenuCard key={id} el={el} />)
             : <div className="text-center">
                 <h1 className="text-3xl mb-10">Your Searched item is not available. </h1>
                 <p>Try again</p>
             </div>
-        console.log(meal)
         setMeals(meal)
     }
 
     useEffect(() => {
-        console.log("useEffect starts");
 
         onValue(ref(getDatabase(app), 'Products/'), (snapshot) => {
-            console.log("product loading")
             const newProducts = { ...snapshot.val() }
             setProducts(newProducts)
-            console.log('use effect products')
             const newMealArray = Object.values(newProducts).slice(0, 4);
 
             setMeals(newMealArray.map((el, id) => <MenuCard key={id} el={el} />))
-            console.log('use effect meals')
         })
-
-        console.log("useEffect ENDS")
     }, [])
 
 
@@ -115,6 +105,3 @@ const Menu = () => {
 }
 
 export default Menu;
-// useMemo( Menu, (nextState, prevState) => {
-//     if (nextState === prevState) return true
-// } );

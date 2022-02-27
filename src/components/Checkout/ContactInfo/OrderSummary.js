@@ -22,18 +22,18 @@ const OrderSummary = (props) => {
             }
         })
 
-        subTotalArr[el] = itemCounter && orderedItems[el] ? (itemCounter[orderedItems[el].id] * orderedItems[el].price.slice(2)) : 0
+        subTotalArr[el] = itemCounter && orderedItems[el] ? (itemCounter[orderedItems[el].id] * orderedItems[el].price) : 0
 
         return (
             itemCounter && orderedItems[el] ?
                 (<div key={el} className="border-b-2 mb-2 border-stone-300">
                     <p className="text-xs text-left text-stone-400">
-                        {orderedItems[el].meal}
+                        {orderedItems[el].name}
                     </p>
 
                     <div className="sm:pl-5 flex justify-between">
                         <p>x{itemCounter[orderedItems[el].id]}</p>
-                        <p><N />{itemCounter[orderedItems[el].id] * orderedItems[el].price.slice(2)}</p>
+                        <p><N />{itemCounter[orderedItems[el].id] * orderedItems[el].price}</p>
                     </div>
                 </div>) : null
         )

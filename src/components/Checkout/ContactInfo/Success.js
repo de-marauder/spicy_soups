@@ -1,8 +1,19 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {TiTickOutline} from 'react-icons/ti';
 
 import OrderSummary from './OrderSummary';
 
 const Success = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        return (()=>{
+            console.log("cleanup...")
+            dispatch({type: "EMPTY_CART"})
+        })
+    })
     return (
         <div className='col-span-3 text-center flex flex-col justify-center items-center'>
             <div className="h-40 w-40 flex items-center rounded-full bg-stone-100"><TiTickOutline className="h-40 w-40 text-green-400" /></div>
