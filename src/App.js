@@ -8,7 +8,7 @@ import ScrollToTop from './components/UI/utilities/ScrollToTop/ScrollToTop';
 function App() {
   return (
     <Provider store={store} >
-      <BrowserRouter basename='spicy_soups'>
+      <BrowserRouter basename='spicy_soups/'>
         <ScrollToTop />
         <Site />
       </BrowserRouter>

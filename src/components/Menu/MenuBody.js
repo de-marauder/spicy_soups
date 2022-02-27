@@ -36,7 +36,6 @@ const MenuBody = (props) => {
             <hr className=" w-full" />
             <div className={`flex flex-wrap transition-all px-2 overflow-hidden justify-around ${tagActive ? 'h-fit' : 'h-0'} `}>
                 <input onChange={(event) => { if (event.target.checked) { props.search(event) } }} type='radio' name="mealTag" className="flex justify-center relative ml-5 mr-8 w-8 mb-8 checked:before:bg-green-600 before:absolute before:content-['eba'] before:w-max before:before:p-1 before:px-4 before:mr-3 before:mb-3 before:bg-stone-600 before:hover:bg-green-300 before:rounded-3xl before:text-white" value="eba" />
-                {/* <input onChange={(event) => { if (event.target.checked) { props.search(event) } }} type='radio' name="mealTag" className="flex justify-center relative ml-5 mr-8 w-8 mb-8 checked:before:bg-green-600 before:absolute before:content-['bitterleaf'] before:w-max before:before:p-1 before:px-4 before:mr-3 before:mb-3 before:bg-stone-600 before:hover:bg-green-300 before:rounded-3xl before:text-white" value="bitterleaf" /> */}
                 <input onChange={(event) => { if (event.target.checked) { props.search(event) } }} type='radio' name="mealTag" className="flex justify-center relative ml-5 mr-8 w-8 mb-8 checked:before:bg-green-600 before:absolute before:content-['afang'] before:w-max before:before:p-1 before:px-4 before:mr-3 before:mb-3 before:bg-stone-600 before:hover:bg-green-300 before:rounded-3xl before:text-white" value="afang" />
                 <input onChange={(event) => { if (event.target.checked) { props.search(event) } }} type='radio' name="mealTag" className="flex justify-center relative ml-5 mr-8 w-8 mb-8 checked:before:bg-green-600 before:absolute before:content-['egusi'] before:w-max before:before:p-1 before:px-4 before:mr-3 before:mb-3 before:bg-stone-600 before:hover:bg-green-300 before:rounded-3xl before:text-white" value="egusi" />
                 <input onChange={(event) => { if (event.target.checked) { props.search(event) } }} type='radio' name="mealTag" className="flex justify-center relative ml-5 mr-8 w-8 mb-8 checked:before:bg-green-600 before:absolute before:content-['okra'] before:w-max before:before:p-1 before:px-4 before:mr-3 before:mb-3 before:bg-stone-600 before:hover:bg-green-300 before:rounded-3xl before:text-white" value="okra" />
@@ -75,7 +74,7 @@ const MenuBody = (props) => {
             </ul > : null} */}
         </div >
     )
-    // console.log(props.loadMore)
+    // console.log(props.meals)
     return (
         <div className="bg-white py-5 sm:py-12 min-h-screen mx-2 sm:mx-8 my-10 rounded-2xl border-y-2 border-c-green flex flex-col justify-center items-center ">
             <div className=" w-full flex flex-col justify-center items-start sm:flex-row">

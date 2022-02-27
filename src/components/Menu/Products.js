@@ -8,7 +8,9 @@ import Img7 from '../../images/fufu and soup.jfif'
 import Img8 from '../../images/IMG_7956.jpg'
 import Img9 from '../../images/fufu and egusi.jpg'
 
-export const Products = {
+
+// console.log(Products)
+const Products = {
     product1: {
         id: 'meal1',
         Img: Img1,
@@ -82,3 +84,5 @@ export const Products = {
         desc: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
     }
 }
+
+export default Products;
