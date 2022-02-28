@@ -21,17 +21,17 @@ const ContactInfoForm = () => {
     const [delTime, setDelTime] = useState('')
     const [note, setNote] = useState('')
     
-    console.log(
-        fname, '\n',
-        lname, '\n',
-        phone, '\n',
-        email, '\n',
-        city, '\n',
-        address, '\n',
-        delDay, '\n',
-        delTime, '\n',
-        note, '\n',
-    )
+    // console.log(
+    //     fname, '\n',
+    //     lname, '\n',
+    //     phone, '\n',
+    //     email, '\n',
+    //     city, '\n',
+    //     address, '\n',
+    //     delDay, '\n',
+    //     delTime, '\n',
+    //     note, '\n',
+    // )
 
     let payload = {
         fname: fname,
@@ -45,7 +45,9 @@ const ContactInfoForm = () => {
         note: note,
     }
 
-    const submitContactInfo = () => {
+    const submitContactInfo = (e) => {
+        e.preventDefault()
+        
         dispatch({ type: "SUBMIT_CONTACT_INFO", data: payload })
         navigate('payment')
     }
@@ -80,7 +82,7 @@ const ContactInfoForm = () => {
                         </div>
                     </div>
 
-                    <button onClick={submitContactInfo} type={'submit'} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl text-white">Choose payment method</button>
+                    <button onClick={(e)=>submitContactInfo(e)} type={'submit'} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl text-white">Choose payment method</button>
                 </form>
             </div>
             <div className="col-span-1">

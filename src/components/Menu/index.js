@@ -20,8 +20,8 @@ const Menu = () => {
     const [mealno, setMealno] = useState(4);
 
     let mealArray = products && Object.values(products).slice(0, 4);
-    console.log(products)
-    console.log(mealArray)
+    // console.log(products)
+    // console.log(mealArray)
 
     const [meals, setMeals] = useState((mealArray.length > 0) ? mealArray.map((el, id) => <MenuCard key={id} el={el} />) : '');
     // setMeals(mealArray.map((el, id) => <MenuCard key={id} el={el} />))
@@ -87,7 +87,6 @@ const Menu = () => {
 
 
 
-    console.log(Hero)
     return (
         <>
             <Hero styles="space-y-20 flex-col py-32">

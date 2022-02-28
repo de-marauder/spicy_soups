@@ -20,7 +20,7 @@ export const cartReducer = (state = initialState, action) => {
                 newItemCounter[item.id] = (newItemCounter[item.id] || 0) + 1
 
             })
-            console.log(newItemCounter)
+            // console.log(newItemCounter)
             return {
                 ...state,
                 cart: newCart,

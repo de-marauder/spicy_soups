@@ -16,14 +16,10 @@ const Cart = () => {
 
     let subTotalArr = {}
     let btnDisabled = false
-    // console.log(itemCounter)
-
-    // console.log(itemCounter)
-    // console.log("Cart item => ", Object.values(cart.cart))
 
     let orderedItems = {}
 
-    const cartItems = Object.keys(itemCounter).map((el) => {
+    const cartItems = itemCounter ? Object.keys(itemCounter).map((el) => {
 
 
         Object.values(cart.cart).forEach((mealObj) => {
@@ -38,8 +34,6 @@ const Cart = () => {
         })
 
         subTotalArr[el] = itemCounter && orderedItems[el] ? (itemCounter[orderedItems[el].id] * orderedItems[el].price) : 0
-        // console.log("subTotal array", subTotalArr)
-        // console.log("After cart loop", orderedItems, el)
 
         return (
             itemCounter && orderedItems[el] ?
@@ -74,7 +68,7 @@ const Cart = () => {
                         <N />{itemCounter[orderedItems[el].id] * orderedItems[el].price}</td>
                 </tr>) : null
         )
-    })
+    }) : []
 
     // console.log("Sub total Arr = ", subTotalArr)
     const subTotal = (Object.values(subTotalArr).length > 0) ? Object.values(subTotalArr).reduce((prevEl, currentEl) => {
@@ -104,8 +98,9 @@ const Cart = () => {
             </div>
             <div className="mx-auto flex items-start flex-col-reverse sm:flex-row sm:justify-between w-11/12 sm:w-10/12 md:w-3/4" >
                 <button
+                    disabled={(itemCounter === null) ? true : (Object.keys(itemCounter).length <= 0 ? true : false)}
                     onClick={() => dispatch({ type: "EMPTY_CART" })}
-                    className="bg-gradient-to-r from-red-600 to-red-300 rounded-3xl py-3 px-5 text-white hover:to-red-600">Empty Cart</button>
+                    className="bg-gradient-to-r from-red-600 to-red-300 rounded-3xl py-3 px-5 text-white hover:to-red-600 disabled:bg-gradient-to-l disabled:from-stone-600 disabled:to-stone-600 disabled:hover:to-stone-600">Empty Cart</button>
                 <div className="w-full mb-3 bg-stone-200 rounded-3xl p-5 space-y-2 text-center sm:w-1/2 md:w-4/12">
                     <div className="flex justify-between p-2">
                         <p>Subtotal</p>
@@ -124,7 +119,7 @@ const Cart = () => {
                         </strong>
                     </div>
                     <NavLink to={home + "contact-info"}>
-                        <Button className="py-2 w-fit sm:w-3/4 hover:relative hover:text-white hover:top-1">CHECKOUT</Button>
+                        <Button disabled={(itemCounter === null) ? true :  (Object.keys(itemCounter).length <= 0 ? true : false)} className="py-2 w-fit sm:w-3/4 hover:relative hover:text-white hover:top-1">CHECKOUT</Button>
                     </NavLink>
                 </div>
             </div>

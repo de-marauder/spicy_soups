@@ -13,7 +13,7 @@ const OrderSummary = (props) => {
 
     const deliveryFee = 1000
 
-    const cartItems = Object.keys(itemCounter).map((el) => {
+    const cartItems = itemCounter ? Object.keys(itemCounter).map((el) => {
 
 
         Object.values(cart.cart).forEach((mealObj) => {
@@ -37,7 +37,7 @@ const OrderSummary = (props) => {
                     </div>
                 </div>) : null
         )
-    })
+    }): null
 
     const subTotal = (Object.values(subTotalArr).length > 0) ? Object.values(subTotalArr).reduce((prevEl, currentEl) => {
         return prevEl + currentEl

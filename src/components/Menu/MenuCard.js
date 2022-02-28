@@ -8,10 +8,7 @@ const MenuCard = (props) => {
     const dispatch = useDispatch()
 
     let btnDisabled = true
-    // console.log(itemCounter)
-    // console.log(props.el)
     if (itemCounter) {
-        // console.log("itemCounter not empty")
         btnDisabled = itemCounter[props.el.id] ? false : true
     }
 
