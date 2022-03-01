@@ -1,15 +1,18 @@
 import React from "react";
-import { NavLink as Link } from "react-router-dom"
+import { NavLink as Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 
 import { CgMenuGridR } from "react-icons/cg"
 import { BsFillCartFill } from "react-icons/bs"
+import { IoIosContact } from "react-icons/io"
 
 import SocialLinks from "../UI/utilities/SocialLinks";
 
 
 const home = ""
 const Navbar = (props) => {
+
+    const navigate = useNavigate()
 
     const counter = useSelector((state) => state.cartReducer.counter)
     // console.log(counter)
@@ -24,8 +27,8 @@ const Navbar = (props) => {
 
     return (
         props.sidebar ? (
-            <nav className='flex z-50 fixed w-screen text-3xl flex-col sm:flex-row px-3 md:px-10 lg:px-40 sm:items-center sm:justify-between h-20 sm:h-24 text-white backdrop-blur-xl bg-gradient-to-r from-c-green to-c-green/10'>
-                <div className="font-sans text-2xl my-auto sm:text-3xl md:text-4xl py-6 text-green-00 font-black ml-4 px-3"><Link to="/">Spicy soups</Link></div>
+            <nav className='flex z-50 fixed w-screen text-3xl flex-col sm:flex-row px-3 md:px-10  sm:items-center sm:justify-between text-white backdrop-blur-xl bg-gradient-to-r from-c-green to-c-green/10'>
+                <div className="font-sans text-2xl my-auto sm:text-3xl md:text-4xl py-6 text-green-00 font-black px-3"><Link to="/">Spicy soups</Link></div>
                 <ul className="sm:flex hidden cursor-pointer text-xl">
                     <Link to={home + "/"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
@@ -44,8 +47,16 @@ const Navbar = (props) => {
                         {cartCounter}
                     </Link>
                 </ul>
-                <div className='hidden p-6 sm:flex space-x-5 '>
-                    <SocialLinks />
+                <div className='hidden p-6 sm:flex justify-between '>
+                    <SocialLinks className="hidden md:flex items-center justify-center mr-5" />
+                    <div className='flex flex-col gap-1 items-center justify-center'>
+                            <div onClick={()=>{
+                                navigate('/login')
+                            }} className="flex justify-center gap-1 items-center text-xl md:text-2xl px-2 py-1 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl"><span><IoIosContact className='text-orange-600'/></span><p className="">Login</p></div>
+                            <div onClick={()=>{
+                                navigate('/signup')
+                            }} className='hover:cursor-pointer'><p className="text-base text-orange-400 hover:text-orange-500">SignUp</p></div>
+                        </div>
                 </div>
                 <div className="flex space-x-4 absolute sm:hidden top-5 sm:top-8 right-6">
                 

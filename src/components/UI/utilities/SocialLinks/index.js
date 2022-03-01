@@ -1,11 +1,11 @@
 import { BsInstagram, BsFacebook } from 'react-icons/bs'
 
-const SocialLinks = () => {
+const SocialLinks = (props) => {
     return (
-        <>
-            <BsInstagram className="hover:text-orange-600" />
-            <BsFacebook className="hover:text-orange-600" />
-        </>
+        <div className={props.className}>
+            <BsInstagram className="hover:text-orange-600 m-2" />
+            <BsFacebook className="hover:text-orange-600 m-2" />
+        </div>
 
     )
 }

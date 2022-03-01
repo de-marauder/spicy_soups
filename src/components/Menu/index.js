@@ -15,19 +15,9 @@ import { app } from '../../firebase-config';
 const Menu = () => {
 
     const [products, setProducts] = useState({})
-    // console.log(products)
-
     const [mealno, setMealno] = useState(4);
-
     let mealArray = products && Object.values(products).slice(0, 4);
-    // console.log(products)
-    // console.log(mealArray)
-
     const [meals, setMeals] = useState((mealArray.length > 0) ? mealArray.map((el, id) => <MenuCard key={id} el={el} />) : '');
-    // setMeals(mealArray.map((el, id) => <MenuCard key={id} el={el} />))
-
-    // meals = mealArray.map((el, id) => <MenuCard key={id} el={el} />)
-    // console.log(meals)
 
     const loadMore = () => {
         // console.log("loadmore active")
@@ -53,7 +43,6 @@ const Menu = () => {
         } else
             setMeals(meal)
     }
-
 
     const search = (event) => {
         // event.preventDefault()

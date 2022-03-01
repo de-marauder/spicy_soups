@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 
-// import Hero from "../Hero";
 import Navbar from '../Navbar';
 import Sidebar from "../Sidebar";
 import Footer from "../Footer/Footer";
@@ -14,11 +13,17 @@ import ContactInfo from "../Checkout/ContactInfo";
 import ContactInfoForm from "../Checkout/ContactInfo/ContactInfo";
 import Payment from "../Checkout/ContactInfo/Payment";
 import Success from "../Checkout/ContactInfo/Success";
+import Login from "../Auth/LogIn";
+import SignUp from "../Auth/SignUp";
 
 
 // const home = "/spicy_soups"
 const Site = () => {
     const [sidebar, sidebarToggler] = useState(true);
+
+    const location = useLocation()
+
+    console.log(location.pathname)
 
     let style
     if (sidebar) {
@@ -32,6 +37,10 @@ const Site = () => {
             <Navbar sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
             <Sidebar sidebar={sidebar} doStuff={() => { sidebarToggler(true) }} style={style} />
             <Routes>
+                <Route path='/login' exact element={<Login />} />
+                <Route path='/signup' exact element={<SignUp />} />
+            </Routes>
+            <Routes>
                 <Route path='/' exact element={<Home />} />
                 <Route path='/menu' exact element={<Menu />} />
                 <Route path='/checkout' element={<CheckOut />} >
@@ -43,8 +52,9 @@ const Site = () => {
                     </Route>
                 </Route>
             </Routes>
+            {location.pathname === "/login" || "/signup" ? null : <Footer />}
 
-            <Footer />
+
         </div>
     )
 }

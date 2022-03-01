@@ -1,12 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getDatabase, ref, onValue } from 'firebase/database'
-// import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {getAuth} from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 const firebaseConfig = {
     apiKey: "AIzaSyApCWF3FUtNj3SJVJIi4Bw-KTovG_fsRgI",
     authDomain: "spicy-soups.firebaseapp.com",
@@ -23,10 +19,4 @@ export default firebaseConfig;
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
-// const db = getDatabase(app)
-// export const Products = onValue(ref(db, 'Products/'), (snapshot)=>{
-//     console.log(snapshot.val())
-//     return snapshot.val()
-// })
-
-// const analytics = getAnalytics(app);
+export const auth = getAuth(app)

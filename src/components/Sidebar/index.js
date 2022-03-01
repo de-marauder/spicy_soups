@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 import { BsFillCartFill } from 'react-icons/bs';
+import { IoIosContact } from 'react-icons/io';
 
 import { MdRestaurantMenu } from "react-icons/md"
 
@@ -11,6 +12,8 @@ import Backdrop from "../UI/Backdrop/Backdrop"
 const home = "";
 
 const Sidebar = (props) => {
+
+    const navigate = useNavigate()
 
     const counter = useSelector((state) => state.cartReducer.counter)
 
@@ -51,8 +54,16 @@ const Sidebar = (props) => {
                         </Link>
                     </ul>
                     <hr className="w-full m-auto" />
-                    <div className='p-6 flex space-x-5 text-3xl'>
-                        <SocialLinks />
+                    <div className='py-6 flex justify-between items-center space-x-5 text-3xl'>
+                        <div className='flex flex-col gap-2 items-center justify-center'>
+                            <div onClick={()=>{
+                                navigate('/login')
+                            }} className="flex gap-2 justify-center items-center px-2 py-1 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl"><span><IoIosContact className='text-orange-600'/></span><p className="">Login</p></div>
+                            <div onClick={()=>{
+                                navigate('/signUp')
+                            }} className='hover:cursor-pointer'><p className="text-base text-orange-400 hover:text-orange-500">SignUp</p></div>
+                        </div>
+                        <SocialLinks className="flex justify-between" />
                     </div>
                 </aside>
             </> : null
