@@ -13,7 +13,7 @@ const Profile = () => {
     let detailActive = ''
     let ordersActive = ''
 
-    if (location.pathname.slice(9) === 'details') {
+    if (location.pathname.slice(9) === '') {
         detailActive = 'bg-orange-500 text-white'
     }
     if (location.pathname.slice(9) === 'orders') {
@@ -28,7 +28,7 @@ const Profile = () => {
                 </h1>
             </Hero>
             <div className="mx-auto font-bold cursor-default text-orange-500 my-10 sm:w-1/2 flex justify-around sm:justify-between">
-                <div onClick={() => navigate('details')} className={detailActive + " w-fit border-2 rounded-3xl border-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2"}>Contact Details</div>
+                <div onClick={() => navigate('/profile')} className={detailActive + " w-fit border-2 rounded-3xl border-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2"}>Contact Details</div>
                 <div onClick={() => navigate('orders')} className={ordersActive + " w-fit border-2 rounded-3xl border-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2"}>My Orders</div>
             </div>
             <Outlet />

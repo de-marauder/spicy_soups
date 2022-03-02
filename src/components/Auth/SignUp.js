@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 // import { useDispatch } from "react-redux";
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { set, ref, onValue } from "firebase/database"
+// import { set, ref, onValue } from "firebase/database"
 
 
-import { auth, db } from "../../firebase-config"
-import Input from "../UI/Input/Input";
+import { auth } from "../../firebase-config"
+// import Input from "../UI/Input/Input";
 import Hero from "../Hero";
 
 const SignUp = () => {
@@ -16,41 +16,36 @@ const SignUp = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const [fname, setFname] = useState('')
-    const [lname, setLname] = useState('')
-    const [phone, setPhone] = useState('')
-    const [city, setCity] = useState('')
-    const [address, setAddress] = useState('')
     const [error, setError] = useState()
 
-    let userData = {
-        login: {
-            email: email,
-            password: password
-        },
-        fname: fname,
-        lname: lname,
-        phone: phone,
-        city: city,
-        address: address
-    }
+    // const [fname, setFname] = useState('')
+    // const [lname, setLname] = useState('')
+    // const [phone, setPhone] = useState('')
+    // const [city, setCity] = useState('')
+    // const [address, setAddress] = useState('')
+
+    // let userData = {
+    //     login: {
+    //         email: email,
+    //         password: password
+    //     },
+    //     fname: fname,
+    //     lname: lname,
+    //     phone: phone,
+    //     city: city,
+    //     address: address
+    // }
 
     const submitContactInfo = async (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         try {
+            
             const user = await createUserWithEmailAndPassword(auth, email, password)
             console.log(user)
-            const newObjLength = 0
-            await onValue(ref(db, `/Users/Customers`), (snapshot) => {
-                const newObj = { ...snapshot.val() }
-                console.log(newObj)
-                newObjLength = Object.keys(newObj).length + 1
-            })
-            await set(ref(db, `/Users/Customers/${email}/customer ${newObjLength}`), { userData })
+            
 
             // dispatch({type:'LOGIN'})
-            navigate('/')
+            navigate('/profile')
         } catch (error) {
             console.log(error.message)
             setError(error.message)
@@ -70,13 +65,13 @@ const SignUp = () => {
                         <input onChange={(event) => { setEmail(event.target.value) }} required name="email" type="email" value={email} placeholder="Enter E-mail" className="w-full text-black p-2 px-10 rounded-2xl bg-white" />
                         <input onChange={(event) => { setPassword(event.target.value) }} required name="password" type="password" value={password} placeholder="Enter Password" className="w-full text-black p-2 px-10 rounded-2xl bg-white" />
 
-                        <div className="sm:grid sm:grid-cols-2 sm:gap-2">
+                        {/* <div className="sm:grid sm:grid-cols-2 sm:gap-2">
                             <Input update={(e) => { setFname(e.target.value) }} value={fname} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"first name"} />
                             <Input update={(e) => { setLname(e.target.value) }} value={lname} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"last name"} />
                             <Input update={(e) => { setPhone(e.target.value) }} value={phone} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"tel"} required placeholder={"phone number"} />
                             <Input update={(e) => { setCity(e.target.value) }} value={city} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"City"} />
                             <Input update={(e) => { setAddress(e.target.value) }} value={address} row={2} className="w-full backdrop-blur-xl col-span-2 mb-5 sm:mb-auto" type={"textarea"} required placeholder={"Address"} />
-                        </div>
+                        </div> */}
 
 
                     </div>

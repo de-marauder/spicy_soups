@@ -13,14 +13,16 @@ const Input = (props) => {
                 value={props.value}
                 required={props.required}
                 placeholder={props.placeholder}
-                onChange={props.update}></textarea> :
-            <input className={style + " bg-inherit border-2 rounded-2xl px-3 py-2 border-orange-600"}
+                onChange={props.update}
+                disabled={props.disabled}></textarea> :
+            <input className={style + " disabled:text-stone-400 bg-inherit border-2 rounded-2xl px-3 py-2 border-orange-600"}
                 name={props.name}
                 type={props.type}
                 value={props.value}
                 required={props.required}
                 placeholder={props.placeholder}
-                onChange={props.update} />
+                onChange={props.update} 
+                disabled={props.disabled}/>
     )
 }
 

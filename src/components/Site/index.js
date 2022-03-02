@@ -37,7 +37,7 @@ const Site = () => {
         style = " right-0"
     }
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState()
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
@@ -48,12 +48,14 @@ const Site = () => {
             <Navbar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
             <Sidebar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(true) }} style={style} />
             <Routes>
-                <Route path='/login' exact element={<Login />} />
-                <Route path='/signup' exact element={<SignUp />} />
-                <Route path='/profile' element={<Profile />} >
-                    <Route path='orders' index={true} element={<MyOrders />} />
-                    <Route path='details' element={<Details />} />
-                </Route>
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<SignUp />} />
+                {user &&
+                    <Route path='/profile' element={<Profile />} >
+                        <Route index={true} element={<Details user={user} />} />
+                        <Route path='orders'  element={<MyOrders />} />
+                    </Route>
+                }
             </Routes>
             <Routes>
                 <Route path='/' exact element={<Home />} />
