@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
     return (
         <>
-            <Hero style={{ height: "110vh" }}>
+            <Hero className="sm:p-40 relative cursor-default flex justify-center items-center overflow-hidden text-white h-screen">
                 <div className='absolute left-2 sm:left-16 md:left-20 top-1/4 md:top-40 pr-2 md:pr-4 pb-8 border-lime-600 border-b-4 border-r-4'>
                     <h1 className='mb-5 font-cabinSketch sm:text-7xl md:text-8xl text-5xl font-semibold'>Spicy soups</h1>
                     <h2 className="font-festive text-4xl sm:text-6xl md:text-7xl">The Naija way</h2>

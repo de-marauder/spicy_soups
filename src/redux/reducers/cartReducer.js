@@ -76,6 +76,19 @@ export const cartReducer = (state = initialState, action) => {
                 ...state,
                 checkout: true
             }
+
+        // case 'LOGIN':
+        //     // window.localStorage({isAuth: true})
+        //     return {
+        //         ...state,
+        //         isAuth: true
+        //     }
+        // case 'LOGOUT':
+        //     // window.localStorage({isAuth: false})
+        //     return {
+        //         ...state,
+        //         isAuth: false
+        //     }
         default:
             return state
     }

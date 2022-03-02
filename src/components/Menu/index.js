@@ -78,7 +78,7 @@ const Menu = () => {
 
     return (
         <>
-            <Hero styles="space-y-20 flex-col py-32">
+            <Hero className="space-y-20 flex-col py-32  p-40 relative cursor-default flex justify-center items-center overflow-hidden text-white h-7/12">
                 <h1 className='font-cabinSketch sm:text-7xl md:text-8xl text-5xl'>
                     <strong>Our Menu</strong>
                 </h1>

@@ -4,7 +4,7 @@ import {Hero} from './StyledHero';
 // style={props.style}
 const hero = (props) => { 
     return (
-        <Hero className={props.className + " p-40 relative cursor-default flex justify-center items-center overflow-hidden text-white"}>
+        <Hero className={props.className + ""}>
             {props.children}
         </Hero>
     )

@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom"
+import { onAuthStateChanged } from "firebase/auth"
 
+import { auth } from '../../firebase-config'
 import Navbar from '../Navbar';
 import Sidebar from "../Sidebar";
 import Footer from "../Footer/Footer";
@@ -15,6 +17,9 @@ import Payment from "../Checkout/ContactInfo/Payment";
 import Success from "../Checkout/ContactInfo/Success";
 import Login from "../Auth/LogIn";
 import SignUp from "../Auth/SignUp";
+import Profile from "../Profile/Profile";
+import MyOrders from "../Profile/MyOrders";
+import Details from "../Profile/Details";
 
 
 // const home = "/spicy_soups"
@@ -23,7 +28,7 @@ const Site = () => {
 
     const location = useLocation()
 
-    console.log(location.pathname)
+    // console.log(location.pathname)
 
     let style
     if (sidebar) {
@@ -32,13 +37,23 @@ const Site = () => {
         style = " right-0"
     }
 
+    const [user, setUser] = useState({})
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser)
+    })
+
     return (
         <div id="home" className="w-screen font-cabin overflow-hidden">
-            <Navbar sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
-            <Sidebar sidebar={sidebar} doStuff={() => { sidebarToggler(true) }} style={style} />
+            <Navbar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
+            <Sidebar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(true) }} style={style} />
             <Routes>
                 <Route path='/login' exact element={<Login />} />
                 <Route path='/signup' exact element={<SignUp />} />
+                <Route path='/profile' element={<Profile />} >
+                    <Route path='orders' index={true} element={<MyOrders />} />
+                    <Route path='details' element={<Details />} />
+                </Route>
             </Routes>
             <Routes>
                 <Route path='/' exact element={<Home />} />
@@ -52,7 +67,7 @@ const Site = () => {
                     </Route>
                 </Route>
             </Routes>
-            {location.pathname === "/login" || "/signup" ? null : <Footer />}
+            {(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/profile") ? null : <Footer />}
 
 
         </div>

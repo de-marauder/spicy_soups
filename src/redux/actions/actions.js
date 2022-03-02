@@ -35,3 +35,13 @@ export const checkOut = () => {
         type: actionType.CHECKOUT,
     }
 }
+export const login = () => {
+    return {
+        type: actionType.LOGIN,
+    }
+}
+export const logout = () => {
+    return {
+        type: actionType.LOGOUT,
+    }
+}

@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
 
+import { auth } from "../../firebase-config"
 import { CgMenuGridR } from "react-icons/cg"
 import { BsFillCartFill } from "react-icons/bs"
 import { IoIosContact } from "react-icons/io"
@@ -15,7 +17,8 @@ const Navbar = (props) => {
     const navigate = useNavigate()
 
     const counter = useSelector((state) => state.cartReducer.counter)
-    // console.log(counter)
+    // const isAuth = useSelector((state) => state.cartReducer.isAuth)
+    console.log('user = ', props.user)
 
     const cartCounter = counter ?
         (
@@ -48,18 +51,30 @@ const Navbar = (props) => {
                     </Link>
                 </ul>
                 <div className='hidden p-6 sm:flex justify-between '>
-                    <SocialLinks className="hidden md:flex items-center justify-center mr-5" />
-                    <div className='flex flex-col gap-1 items-center justify-center'>
-                            <div onClick={()=>{
-                                navigate('/login')
-                            }} className="flex justify-center gap-1 items-center text-xl md:text-2xl px-2 py-1 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl"><span><IoIosContact className='text-orange-600'/></span><p className="">Login</p></div>
-                            <div onClick={()=>{
-                                navigate('/signup')
-                            }} className='hover:cursor-pointer'><p className="text-base text-orange-400 hover:text-orange-500">SignUp</p></div>
+                    <SocialLinks className="hidden lg:flex items-center justify-center mr-5" />
+                    {props.user?.email ? 
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <div onClick={() => { navigate('/profile') }} className="flex justify-center gap-1 items-center text-lg px-2 lg:px-4 lg:py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
+                            <span><IoIosContact className='text-orange-600' /></span>
+                            <p className="">Profile</p>
+                        </div> 
+                        <div onClick={() => { signOut(auth); navigate('/') }} className="flex justify-center gap-1 items-center text-lg px-2 lg:px-4 lg:py-1 bg-orange-700/80 hover:cursor-pointer hover:bg-orange-500/80 rounded-3xl">
+                            {/* <span><IoIosContact className='text-orange-600' /></span> */}
+                            <p className="">Log out</p>
                         </div>
+                    </div> :
+                        <div className='flex flex-col gap-1 items-center justify-center'>
+                            <div onClick={() => { navigate('/login') }} className="flex justify-center gap-1 items-center text-xl md:text-2xl px-4 py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
+                                <span><IoIosContact className='text-orange-600' /></span><p className="w-fit">Login</p>
+                            </div>
+                            <div onClick={() => { navigate('/signup') }} className='hover:cursor-pointer'>
+                                <p className="text-base text-orange-400 hover:text-orange-500">SignUp</p>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div className="flex space-x-4 absolute sm:hidden top-5 sm:top-8 right-6">
-                
+
                     <Link to='/checkout'>
                         {cartCounter}
                     </Link>
