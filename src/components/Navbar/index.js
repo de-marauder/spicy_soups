@@ -18,7 +18,7 @@ const Navbar = (props) => {
 
     const counter = useSelector((state) => state.cartReducer.counter)
     // const isAuth = useSelector((state) => state.cartReducer.isAuth)
-    console.log('user = ', props.user)
+    // console.log('user = ', props.user)
 
     const cartCounter = counter ?
         (

@@ -17,7 +17,7 @@ const Sidebar = (props) => {
     const navigate = useNavigate()
 
     const counter = useSelector((state) => state.cartReducer.counter)
-    console.log('user = ', props.user)
+    // console.log('user = ', props.user)
 
     const cartCounter = counter ?
         (

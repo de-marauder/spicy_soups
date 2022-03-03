@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { ref, set, onValue } from "firebase/database";
 
-import { app } from '../../../firebase-config'
+import { db } from '../../../firebase-config'
 import OrderSummary from "./OrderSummary";
 
-const Payment = () => {
+const Payment = ({ user }) => {
 
     const navigate = useNavigate()
     const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
     const order = useSelector((state) => { return state.cartReducer.itemCounter })
     const dispatch = useDispatch()
 
+    console.log(user)
+
     // const db = getDatabase(app)
     // const [orders, setOrders] = useState({});
     const [orderNo, setOrderNo] = useState(0)
+    const [userOrderNo, setUserOrderNo] = useState(0)
 
     const makePayment = () => {
         const date = new Date()
 
-        set(ref(getDatabase(app), `Orders/order ${orderNo}`), {
+        set(ref(db, `Orders/order ${orderNo}`), {
             contactInfo: { ...contactInfo },
+            time: date.toString(),
+            order: order
+        })
+        user && set(ref(db, `/Users/Customers/customer ${user.uid}/orders/order ${userOrderNo}`), {
             time: date.toString(),
             order: order
         })
@@ -33,20 +40,26 @@ const Payment = () => {
 
     useEffect(() => {
         console.log("payment useEffect running ....")
-        onValue(ref(getDatabase(app), '/Orders'), (snap) => {
+        onValue(ref(db, '/Orders'), (snap) => {
             const ExistingOrders = { ...snap.val() }
             const currOrderNo = Object.entries(ExistingOrders).length + 1
             // console.log(currOrderNo)
 
             setOrderNo(ExistingOrders !== null ? currOrderNo : {})
-            // console.log(ExistingOrders)
+            console.log("all orders = ", ExistingOrders)
         })
+        onValue(ref(db, `/Users/Customers/customer ${user.uid}/orders`), (snap) => {
+            const ExistingOrders = { ...snap.val() }
+            const currOrderNo = Object.entries(ExistingOrders).length + 1
+            // console.log(currOrderNo)
 
+            setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
+            console.log("user orders = ", ExistingOrders)
+        })
         return () => {
             setOrderNo(0)
         }
-
-    }, [])
+    }, [user])
 
     return (
         <>
