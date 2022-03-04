@@ -69,7 +69,7 @@ const Site = () => {
                     </Route>
                 </Route>
             </Routes>
-            {(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/profile") ? null : <Footer />}
+            {(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === `/profile`) ? null : <Footer />}
 
 
         </div>

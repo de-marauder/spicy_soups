@@ -9,43 +9,27 @@ const MyOrders = ({ user }) => {
     const [userOrders, setUserOrders] = useState({})
     const [products, setProducts] = useState([])
 
-    let orders = {}
+    const [orders, setOrders] = useState({})
     console.log(user)
-
-    const cleanData = () => {
-        Object.entries(userOrders).forEach((order) => {
-            // Object.entries(order.order).forEach((meal) => {
-                products.forEach((meals) => {
-                    console.log(order)
-                    console.log(order[0])
-                    console.log(meals.id)
-                    console.log(order[1].order)
-                    Object.entries(order[1].order).forEach((el)=>{
-                        console.log(el)
-                        if (el[0] === meals.id) {
-                            orders[order[0]] = meals
-                            // console.log(orders)
-                        }
-                    })
-                })
-            // })
-        })
-
-        console.log(orders)
-    }
+    console.log(userOrders)
+    console.log(products)
+    console.log(orders)
 
     useEffect(() => {
         (async () => {
             try {
-                // let newObjLength = 0
+                let userOrdersCopy = {}
                 user && await onValue(ref(db, `/Users/Customers/customer ${user?.uid}/orders`), (snapshot) => {
                     const storedUserData = { ...snapshot.val() }
                     console.log(storedUserData)
                     snapshot.val() && setUserOrders(storedUserData)
-                    // console.log(userData)
+                    // console.log(userOrders)
                     console.log('data RETRIEVED')
+                    userOrdersCopy = storedUserData
                 })
                 console.log('data NOT RETRIEVED. USER NOT SET')
+
+                let productsCopy = []
 
                 user && await onValue(ref(db, `/Products`), (snapshot) => {
                     const storedUserData = { ...snapshot.val() }
@@ -53,32 +37,89 @@ const MyOrders = ({ user }) => {
                     snapshot.val() && setProducts(Object.values(storedUserData))
                     // console.log(userData)
                     console.log('data RETRIEVED')
+                    productsCopy = Object.values(storedUserData)
+
+                    let newOrders = {}
+                    Object.entries(userOrdersCopy).forEach((order) => {
+                        let newOrder = []
+                        productsCopy.forEach((meal) => {
+                            Object.entries(order[1].order).forEach((el) => {
+                                if (el[0] === meal.id) {
+                                    let presentMeal = [el[0], meal, el[1]]
+                                    newOrder.push(presentMeal)
+
+                                    newOrders[order[0]] = { ...newOrders[order[0]], order: newOrder }
+                                    console.log(newOrders)
+                                }
+                            })
+                        })
+                        console.log(order[0])
+                        let time = order[1].time.slice(0, 24)
+                        newOrders[order[0]] = { ...newOrders[order[0]], time: time }
+                    })
+                    console.log(newOrders)
+                    setOrders(newOrders)
                 })
+
             } catch (error) {
                 console.log("ERROR => ", error)
             }
         })()
 
-        return () => {
-
-        }
+        return () => { }
     }, [user])
 
-    const cartItems = userOrders ? Object.entries(userOrders).map((el, id) => {
+
+    // const orderArray = Object.keys(orders).map((order) => {
+    //     const orderedItemsArray = orders[order].order.map((orderedItems) => {
+    //         return (
+    //             <div className="flex">
+    //                 <div className="w-1/4">
+    //                     <img className="" src={orderedItems[1].img} alt={orderedItems[1].id} />
+    //                 </div>
+    //                 <div className="w-3/4">
+    //                     <h2 className="">{orderedItems[1].name}</h2>
+    //                     <p className="">{orderedItems[2]}</p>
+    //                 </div>
+    //             </div>
+    //         )
+    //     })
+    //     return orderedItemsArray
+    // })
+    // console.log(orderArray)
+    // const orderedItemsArray = Object.keys(orders).map((el)=>{})
+
+    const cartItems = orders ? Object.entries(orders).map((order) => {
+        const orderedItemsArray = orders[order[0]].order.map((orderedItems) => {
+            return (
+                <div key={orderedItems[0]} className="flex items-center h-20 md:h-24 border-2 border-orange-500 rounded-xl overflow-hidden mb-5 sm:mr-5 sm:w-64">
+                    <div className="w-1/2 h-full">
+                        <img className="w-full h-full" src={orderedItems[1].img} alt={orderedItems[1].id} />
+                    </div>
+                    <div className="w-full px-3">
+                        <h2 className="font-bold mx-auto w-fit text-stone-600">{orderedItems[1].name}</h2>
+                        <p className="text-sm mx-auto w-fit">Number of orders: <strong className="text-orange-600">{orderedItems[2]}</strong></p>
+                    </div>
+                </div>
+            )
+        })
         return (
-            <div key={el[0]} className="flex justify-center">
-                <div className="w-1/4 bg-stone-200">Date</div>
-                <div className="w-3/4 bg-green-400">Order</div>
+            <div key={order[0]} className="flex items-center mb-10  border-2 border-orange-500 rounded-3xl bg-orange-100">
+                <div className="w-1/4 font-bold px-3 text-stone-600 ">{order[1].time}</div>
+                <div className="w-3/4 md:w-full flex flex-col md:flex-row md:flex-wrap justify-center p-5">
+                    {orderedItemsArray}
+                </div>
             </div>
         )
     }) : []
 
-    cleanData()
+    console.log(Object.entries(orders))
+    console.log(orders)
+
 
     return (
         <div className="w-10/12 overflow-hidden rounded-3xl text-center mb-10 mx-auto">
-            {cartItems}
-            {cartItems.length === 0 ? <div className="text-4xl text-center my-10"><strong>You have no orders</strong></div> : null}
+            {Object.entries(orders).length === 0 ? <div className="text-4xl text-center my-10"><strong>You have no orders</strong></div> : cartItems}
         </div>
     )
 }

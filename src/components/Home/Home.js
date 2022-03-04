@@ -1,8 +1,8 @@
-import Hero from "../Hero";
+import { NavLink } from "react-router-dom";
 
+import Hero from "../Hero";
 import Body from "./Body/Body";
 import Button from "../UI/Button/Button";
-import { NavLink } from "react-router-dom";
 
 
 const Home = () => {
