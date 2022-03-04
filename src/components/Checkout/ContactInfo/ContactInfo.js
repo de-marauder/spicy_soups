@@ -24,17 +24,7 @@ const ContactInfoForm = ({ user }) => {
     // const [delTime, setDelTime] = useState('')
     // const [note, setNote] = useState('')
 
-    // console.log(
-    //     fname, '\n',
-    //     lname, '\n',
-    //     phone, '\n',
-    //     email, '\n',
-    //     city, '\n',
-    //     address, '\n',
-    //     delDay, '\n',
-    //     delTime, '\n',
-    //     note, '\n',
-    // )
+    
 
     const [userDetails, setUserDetails] = useState({
         fname: '',
@@ -48,11 +38,23 @@ const ContactInfoForm = ({ user }) => {
         note: '',
     })
 
+    console.log(
+        userDetails.fname, '\n',
+        userDetails.lname, '\n',
+        userDetails.phone, '\n',
+        userDetails.email, '\n',
+        userDetails.city, '\n',
+        userDetails.address, '\n',
+        userDetails.delDay, '\n',
+        userDetails.delTime, '\n',
+        userDetails.note, '\n',
+    )
+
     useEffect(() => {
         (async () => {
             try {
                 // let newObjLength = 0
-                await onValue(ref(db, `/Users/Customers/customer ${user.uid}/details`), (snapshot) => {
+                user && await onValue(ref(db, `/Users/Customers/customer ${user.uid}/details`), (snapshot) => {
                     const storedUserData = { ...snapshot.val() }
                     console.log(storedUserData)
                     snapshot.val() && setUserDetails(storedUserData)
@@ -81,7 +83,7 @@ const ContactInfoForm = ({ user }) => {
     const child = (
         <>
             <div className="flex items-center justify-between mb-5 sm:mb-auto "><label htmlFor='delivery day'>Delivery day: </label><Input update={(e) => { setUserDetails({ ...userDetails, delDay: e.target.value }) }} value={userDetails.delDay} className="w-auto" type={"date"} required placeholder={"Delivery Day"} id={"Delivery day"} /></div>
-            <div className="flex items-center justify-between mb-5 sm:mb-auto"><label htmlFor='delivery time'>Delivery time: </label><Input update={(e) => { setUserDetails({ ...userDetails, DelTime: e.target.value }) }} value={userDetails.delTime} className="w-auto" type={"time"} required placeholder={"Delivery time"} id={"Delivery time"} /></div>
+            <div className="flex items-center justify-between mb-5 sm:mb-auto"><label htmlFor='delivery time'>Delivery time: </label><Input update={(e) => { setUserDetails({ ...userDetails, delTime: e.target.value }) }} value={userDetails.delTime} className="w-auto" type={"time"} required placeholder={"Delivery time"} id={"Delivery time"} /></div>
 
         </>
     )
@@ -89,7 +91,7 @@ const ContactInfoForm = ({ user }) => {
     return (
         <>
             <div className="mb-10 sm:mr-5 col-span-2">
-                <Details user={user} userDetails={userDetails} child={child} notProfile={true}>
+                <Details user={user} userDetails={userDetails} setUserDetails={setUserDetails} child={child} notProfile={true}>
                     <div className="space-y-2 w-full">
                         <p className="text-left"><strong>Note: </strong></p>
                         <div className="">

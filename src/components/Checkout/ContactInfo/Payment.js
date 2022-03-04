@@ -14,6 +14,7 @@ const Payment = ({ user }) => {
     const dispatch = useDispatch()
 
     console.log(user)
+    console.log(contactInfo)
 
     // const db = getDatabase(app)
     // const [orders, setOrders] = useState({});
@@ -40,22 +41,26 @@ const Payment = ({ user }) => {
 
     useEffect(() => {
         console.log("payment useEffect running ....")
-        onValue(ref(db, '/Orders'), (snap) => {
-            const ExistingOrders = { ...snap.val() }
-            const currOrderNo = Object.entries(ExistingOrders).length + 1
-            // console.log(currOrderNo)
+        // user && (
+            onValue(ref(db, '/Orders'), (snap) => {
+                const ExistingOrders = { ...snap.val() }
+                const currOrderNo = Object.entries(ExistingOrders).length + 1
+                // console.log(currOrderNo)
 
-            setOrderNo(ExistingOrders !== null ? currOrderNo : {})
-            console.log("all orders = ", ExistingOrders)
-        })
-        onValue(ref(db, `/Users/Customers/customer ${user.uid}/orders`), (snap) => {
-            const ExistingOrders = { ...snap.val() }
-            const currOrderNo = Object.entries(ExistingOrders).length + 1
-            // console.log(currOrderNo)
+                setOrderNo(ExistingOrders !== null ? currOrderNo : {})
+                console.log("all orders = ", ExistingOrders)
+            })
+        // )
+        user && (
+            onValue(ref(db, `/Users/Customers/customer ${user?.uid}/orders`), (snap) => {
+                const ExistingOrders = { ...snap.val() }
+                const currOrderNo = Object.entries(ExistingOrders).length + 1
+                // console.log(currOrderNo)
 
-            setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
-            console.log("user orders = ", ExistingOrders)
-        })
+                setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
+                console.log("user orders = ", ExistingOrders)
+            })
+        )
         return () => {
             setOrderNo(0)
         }
