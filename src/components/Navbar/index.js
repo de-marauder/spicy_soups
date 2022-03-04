@@ -54,7 +54,7 @@ const Navbar = (props) => {
                     <SocialLinks className="hidden lg:flex items-center justify-center mr-5" />
                     {props.user?.email ? 
                     <div className="flex flex-col md:flex-row gap-2">
-                        <div onClick={() => { navigate('/profile') }} className="flex justify-center mb-2 sm:mr-2 gap-1 items-center text-lg px-2 lg:px-4 lg:py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
+                        <div onClick={() => { navigate('/profile') }} className="flex justify-center mb-2 sm:mb-0 sm:mr-2 gap-1 items-center text-lg px-2 lg:px-4 lg:py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
                             <span><IoIosContact className='text-orange-600 mr-2' /></span>
                             <p className="">Profile</p>
                         </div> 
@@ -64,7 +64,7 @@ const Navbar = (props) => {
                         </div>
                     </div> :
                         <div className='flex flex-col gap-1 items-center justify-center'>
-                            <div onClick={() => { navigate('/login') }} className="flex justify-center mb-2 sm:mr-2 gap-1 items-center text-xl md:text-2xl px-4 py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
+                            <div onClick={() => { navigate('/login') }} className="flex justify-center mb-2 sm:mb-0 sm:mr-2 gap-1 items-center text-xl md:text-2xl px-4 py-1 bg-stone-700/80 hover:cursor-pointer hover:bg-stone-900/80 rounded-3xl">
                                 <span><IoIosContact className='text-orange-600 mr-2' /></span><p className="w-fit">Login</p>
                             </div>
                             <div onClick={() => { navigate('/signup') }} className='hover:cursor-pointer'>
