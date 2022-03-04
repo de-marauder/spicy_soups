@@ -62,18 +62,8 @@ const SignUp = () => {
                 <form className="w-8/12 mx-auto space-y-5 sm:w-5/12">
                     {error && <p className="text-red-600 px-2 py-1 rounded-xl bg-stone-100/20 backdrop-blur-md w-fit mx-auto">{error}</p>}
                     <div className="flex flex-col gap-5 mx-auto my-5">
-                        <input onChange={(event) => { setEmail(event.target.value) }} required name="email" type="email" value={email} placeholder="Enter E-mail" className="w-full text-black p-2 px-10 rounded-2xl bg-white" />
+                        <input onChange={(event) => { setEmail(event.target.value) }} required name="email" type="email" value={email} placeholder="Enter E-mail" className="w-full mb-10 text-black p-2 px-10 rounded-2xl bg-white" />
                         <input onChange={(event) => { setPassword(event.target.value) }} required name="password" type="password" value={password} placeholder="Enter Password" className="w-full text-black p-2 px-10 rounded-2xl bg-white" />
-
-                        {/* <div className="sm:grid sm:grid-cols-2 sm:gap-2">
-                            <Input update={(e) => { setFname(e.target.value) }} value={fname} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"first name"} />
-                            <Input update={(e) => { setLname(e.target.value) }} value={lname} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"last name"} />
-                            <Input update={(e) => { setPhone(e.target.value) }} value={phone} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"tel"} required placeholder={"phone number"} />
-                            <Input update={(e) => { setCity(e.target.value) }} value={city} className="w-full backdrop-blur-xl mb-5 sm:mb-auto" type={"text"} required placeholder={"City"} />
-                            <Input update={(e) => { setAddress(e.target.value) }} value={address} row={2} className="w-full backdrop-blur-xl col-span-2 mb-5 sm:mb-auto" type={"textarea"} required placeholder={"Address"} />
-                        </div> */}
-
-
                     </div>
                     <button onClick={(e) => submitContactInfo(e)} type={'submit'} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl w-fit mx-auto text-white text-xl">Sign Up</button>
                 </form>
