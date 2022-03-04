@@ -579,6 +579,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: auto;
 }
 
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -635,8 +640,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 2.5rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .block {
   display: block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -695,6 +708,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-48 {
   height: 12rem;
+}
+
+.max-h-40 {
+  max-height: 10rem;
 }
 
 .min-h-screen {
@@ -761,6 +778,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100vw;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -789,8 +810,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 5rem;
 }
 
-.w-1\/4 {
-  width: 25%;
+.w-2\/3 {
+  width: 66.666667%;
+}
+
+.min-w-fit {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+.max-w-fit {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
 .cursor-pointer {
@@ -981,6 +1014,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(234 88 12 / var(--tw-border-opacity));
 }
 
+.border-indigo-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(99 102 241 / var(--tw-border-opacity));
+}
+
 .border-orange-500 {
   --tw-border-opacity: 1;
   border-color: rgb(249 115 22 / var(--tw-border-opacity));
@@ -1075,19 +1113,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
-.bg-stone-400 {
+.bg-orange-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(168 162 158 / var(--tw-bg-opacity));
-}
-
-.bg-orange-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 215 170 / var(--tw-bg-opacity));
-}
-
-.bg-green-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+  background-color: rgb(255 237 213 / var(--tw-bg-opacity));
 }
 
 .bg-gradient-to-r {
@@ -1454,6 +1482,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-orange-600 {
   --tw-text-opacity: 1;
   color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.text-stone-600 {
+  --tw-text-opacity: 1;
+  color: rgb(87 83 78 / var(--tw-text-opacity));
 }
 
 .text-green-400 {
@@ -1882,6 +1915,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 50%;
   }
 
+  .sm\:w-fit {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  .sm\:w-64 {
+    width: 16rem;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1896,6 +1939,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:flex-col {
     flex-direction: column;
+  }
+
+  .sm\:flex-wrap {
+    flex-wrap: wrap;
   }
 
   .sm\:items-center {
@@ -2021,6 +2068,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 10rem;
   }
 
+  .md\:h-32 {
+    height: 8rem;
+  }
+
+  .md\:h-24 {
+    height: 6rem;
+  }
+
   .md\:w-4\/12 {
     width: 33.333333%;
   }
@@ -2049,8 +2104,64 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 83.333333%;
   }
 
+  .md\:w-96 {
+    width: 24rem;
+  }
+
+  .md\:w-full {
+    width: 100%;
+  }
+
+  .md\:w-20 {
+    width: 5rem;
+  }
+
+  .md\:w-52 {
+    width: 13rem;
+  }
+
+  .md\:w-60 {
+    width: 15rem;
+  }
+
+  .md\:w-72 {
+    width: 18rem;
+  }
+
+  .md\:w-64 {
+    width: 16rem;
+  }
+
+  .md\:w-1\/4 {
+    width: 25%;
+  }
+
+  .md\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  .md\:min-w-fit {
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+  }
+
+  .md\:max-w-fit {
+    max-width: -webkit-fit-content;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+  }
+
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .md\:justify-evenly {
+    justify-content: space-evenly;
   }
 
   .md\:p-3 {
