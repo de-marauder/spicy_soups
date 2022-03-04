@@ -1289,6 +1289,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.75rem;
 }
 
+.py-40 {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+}
+
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1845,6 +1850,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:mr-10 {
     margin-right: 2.5rem;
+  }
+
+  .sm\:mr-2 {
+    margin-right: 0.5rem;
   }
 
   .sm\:flex {
