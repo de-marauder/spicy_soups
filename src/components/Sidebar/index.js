@@ -35,7 +35,14 @@ const Sidebar = (props) => {
                     <MdRestaurantMenu
                         className="absolute top-8 right-10 hover:text-red-700"
                         onClick={props.doStuff} />
-                    <div className="text-3xl mt-9 text-orange-00 font-black ml-4"><Link to="/">Spicy soups</Link></div>
+                    <div onClick={props.doStuff} className="text-3xl mt-9 flex items-center justify-between text-orange-00 font-black mx-4">
+                        <Link to="/">Spicy soups</Link>
+                        <Link to={home + "/admin"}>
+                            <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
+                                Admin
+                            </div>
+                        </Link>
+                    </div>
                     <hr className="w-full m-auto" />
                     <ul onClick={props.doStuff} className="flex flex-col">
                         <Link className="hover:border-b-2 hover:border-orange-600" to={home + "/"}>

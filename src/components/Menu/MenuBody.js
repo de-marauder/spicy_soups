@@ -46,7 +46,7 @@ const MenuBody = (props) => {
                     {props.children}
                 </div>
             </div >
-            <div className="pt-10 flex justify-around w-3/4 sm:justify-around sm:w-2/4" >
+            <div className="pt-10 text-orange-600 flex justify-around w-3/4 sm:justify-around sm:w-2/4" >
                 <Button disabled={props.disabled} doStuff={props.loadMore} className="hover:text-white">Load More</Button>
                 {cart.length > 0 ? <Button doStuff={() => {
                     navigate('/checkout')

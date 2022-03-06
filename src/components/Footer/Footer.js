@@ -7,7 +7,7 @@ const footer = () => {
     const date = new Date()
 
      return (
-        <section className="relative border-t-orange-600 border-t-2 bg-gradient-to-b from-c-green to-black via-black/90 text-white text-center">
+        <section className="relative bg-gradient-to-b from-c-green to-black via-black/90 text-white text-center">
             <div className='p-10'>
                 <div className='border-2 w-min p-3 mx-auto border-yellow-500 shadow-contactIconShadow rounded-full'>
                     <MdConnectWithoutContact className="mx-auto w-12 h-12 text-yellow-500 " />

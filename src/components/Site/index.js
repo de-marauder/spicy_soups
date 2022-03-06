@@ -20,6 +20,7 @@ import SignUp from "../Auth/SignUp";
 import Profile from "../Profile/Profile";
 import MyOrders from "../Profile/MyOrders";
 import Details from "../Profile/Details";
+import Admin from "../Admin/Admin"
 
 
 // const home = "/spicy_soups"
@@ -51,10 +52,13 @@ const Site = () => {
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<SignUp />} />
                 {user &&
-                    <Route path='/profile' element={<Profile />} >
-                        <Route index={true} element={<Details user1={user} />} />
-                        <Route path='orders'  element={<MyOrders user={user} />} />
-                    </Route>
+                    <>
+                        <Route path='/admin' element={<Admin />} />
+                        <Route path='/profile' element={<Profile />} >
+                            <Route index={true} element={<Details user1={user} />} />
+                            <Route path='orders' element={<MyOrders user={user} />} />
+                        </Route>
+                    </>
                 }
             </Routes>
             <Routes>
@@ -62,7 +66,7 @@ const Site = () => {
                 <Route path='/menu' exact element={<Menu />} />
                 <Route path='/checkout' element={<CheckOut />} >
                     <Route index={true} element={<Cart />} />
-                    <Route path='contact-info' element={<ContactInfo  />} >
+                    <Route path='contact-info' element={<ContactInfo />} >
                         <Route index={true} element={<ContactInfoForm user={user} />} />
                         <Route path='payment' index={true} element={<Payment user={user} />} />
                         <Route path='payment/success' index={true} element={<Success />} />
