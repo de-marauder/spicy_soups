@@ -37,11 +37,11 @@ const Sidebar = (props) => {
                         onClick={props.doStuff} />
                     <div onClick={props.doStuff} className="text-3xl mt-9 flex items-center justify-between text-orange-00 font-black mx-4">
                         <Link to="/">Spicy soups</Link>
-                        <Link to={home + "/admin"}>
+                        {props.user?.email==="admin@admin.com" ? <Link to={home + "/admin"}>
                             <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
                                 Admin
                             </div>
-                        </Link>
+                        </Link>: null}
                     </div>
                     <hr className="w-full m-auto" />
                     <ul onClick={props.doStuff} className="flex flex-col">

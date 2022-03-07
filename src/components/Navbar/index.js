@@ -50,11 +50,11 @@ const Navbar = (props) => {
                         {cartCounter}
                     </Link>
                 </ul>
-                <Link className="hidden sm:block" to={home + "/admin"}>
+                {props.user?.email==="admin@admin.com" ? <Link className="hidden sm:block" to={home + "/admin"}>
                     <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
                         Admin
                     </div>
-                </Link>
+                </Link> : null}
                 <div className='hidden p-6 sm:flex justify-between '>
                     <SocialLinks className="hidden lg:flex items-center justify-center mr-5" />
                     {props.user?.email ?

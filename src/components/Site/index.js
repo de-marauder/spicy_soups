@@ -53,7 +53,7 @@ const Site = () => {
                 <Route path='/signup' element={<SignUp />} />
                 {user &&
                     <>
-                        <Route path='/admin' element={<Admin />} />
+                        {user.email==='admin@admin.com' ? <Route path='/admin' element={<Admin user={user} />} />: null}
                         <Route path='/profile' element={<Profile />} >
                             <Route index={true} element={<Details user1={user} />} />
                             <Route path='orders' element={<MyOrders user={user} />} />
@@ -73,7 +73,7 @@ const Site = () => {
                     </Route>
                 </Route>
             </Routes>
-            {(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === `/profile`) ? null : <Footer />}
+            {(location.pathname === "/login" || location.pathname === "/signup" || location.pathname === `/profile` || location.pathname === `/admin`) ? null : <Footer />}
 
 
         </div>
