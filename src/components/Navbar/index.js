@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
+// import { ref, onValue } from "firebase/database";
 
 import { auth } from "../../firebase-config"
 import { CgMenuGridR } from "react-icons/cg"
@@ -31,8 +32,8 @@ const Navbar = (props) => {
     return (
         props.sidebar ? (
             <nav className='flex z-50 fixed w-screen text-3xl flex-col sm:flex-row px-3 md:px-10  sm:items-center sm:justify-between text-white backdrop-blur-xl bg-gradient-to-r from-c-green to-c-green/10'>
-                <div className="font-sans text-2xl my-auto sm:text-3xl md:text-4xl py-6 text-green-00 font-black px-3"><Link to="/">Spicy soups</Link></div>
-                <ul className="sm:flex hidden cursor-pointer text-xl">
+                <div className="font-sans text-2xl my-auto sm:text-3xl md:text-4xl py-6 text-green-00 font-black px-3"><Link to="/">Tasty Foods</Link></div>
+                <ul className="sm:flex px-1 hidden cursor-pointer text-xl">
                     <Link to={home + "/"}>
                         <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 hover:border-orange-600 hover:border-b-2 px-3">
                             Home
@@ -50,10 +51,10 @@ const Navbar = (props) => {
                         {cartCounter}
                     </Link>
                 </ul>
-                {props.user?.email==="admin@admin.com" ? <Link className="hidden sm:block" to={home + "/admin"}>
-                    <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
+                {props.user?.admin ? <Link className="hidden px-1 sm:block" to={home + "/admin"}>
+                    <p className="bg-green-600 sm:ml-2 lg:ml-0 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
                         Admin
-                    </div>
+                    </p>
                 </Link> : null}
                 <div className='hidden p-6 sm:flex justify-between '>
                     <SocialLinks className="hidden lg:flex items-center justify-center mr-5" />

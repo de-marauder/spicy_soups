@@ -106,7 +106,7 @@ const MyOrders = ({ user }) => {
         return (
             <div key={order[0]} className="flex items-center mb-10  border-2 border-orange-500 rounded-3xl bg-orange-100">
                 <div className="w-1/4 font-bold px-3 text-stone-600 ">{order[1].time}</div>
-                <div className="w-3/4 md:w-full flex flex-col md:flex-row md:flex-wrap justify-center p-5">
+                <div className="w-3/4 md:w-full flex flex-col md:flex-row md:flex-wrap justify-centergit status p-5">
                     {orderedItemsArray}
                 </div>
             </div>

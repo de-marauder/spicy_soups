@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { onValue, ref } from "firebase/database"
+import { onValue, ref, set } from "firebase/database"
 
 import { db } from "../../firebase-config"
 // import { makeAdmin } from "../../../functions"
@@ -13,7 +13,23 @@ const Admin = ({ user }) => {
 
     const changeUserToAdmin = (e) => {
         e.preventDefault()
-        // makeAdmin({ email: user })
+        let adminList = []
+        let admin = {}
+        try{
+            onValue(ref(db, '/Users/Admins'), (snapshot) => {
+                console.log(snapshot.val)
+                admin = {...snapshot.val()}
+                Object.values(admin).forEach((email)=>{
+                    adminList.push(email)
+                })
+            })
+            set(ref(db, `/Users/Admins/${adminList.length}`), userToAdmin )
+            alert(`${userToAdmin} is now an admin`)
+            setUserAsAdmin('')
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     useEffect(() => {
@@ -22,7 +38,7 @@ const Admin = ({ user }) => {
             let OrdersCopy = {}
             user && onValue(ref(db, `/Orders`), (snapshot) => {
                 const storedUserData = { ...snapshot.val() }
-                console.log(storedUserData)
+                // console.log(storedUserData)
                 snapshot.val() && setOrders(storedUserData)
                 // console.log(userOrders)
                 console.log('data RETRIEVED')
@@ -34,7 +50,7 @@ const Admin = ({ user }) => {
 
             user && onValue(ref(db, `/Products`), (snapshot) => {
                 const storedUserData = { ...snapshot.val() }
-                console.log(storedUserData)
+                // console.log(storedUserData)
                 // snapshot.val() && setProducts(Object.values(storedUserData))
                 // console.log(userData)
                 console.log('data RETRIEVED')
@@ -43,21 +59,21 @@ const Admin = ({ user }) => {
                 let newOrders = {}
                 Object.entries(OrdersCopy).forEach((order) => {
                     let newOrder = []
-                    console.log(order)
+                    // console.log(order)
                     productsCopy.forEach((meal) => {
 
                         Object.entries(order[1].order).forEach((el) => {
-                            console.log(el)
+                            // console.log(el)
                             if (el[0] === meal.id) {
                                 let presentMeal = [el[0], meal, el[1]]
                                 newOrder.push(presentMeal)
 
                                 newOrders[order[0]] = { ...newOrders[order[0]], order: newOrder }
-                                console.log(newOrders)
+                                // console.log(newOrders)
                             }
                         })
                     })
-                    console.log(order[0])
+                    // console.log(order[0])
                     let time = order[1].time.slice(0, 24)
                     let contactInfo = order[1].contactInfo
                     newOrders[order[0]] = { ...newOrders[order[0]], time: time, contactInfo: contactInfo }
@@ -79,19 +95,19 @@ const Admin = ({ user }) => {
         const orderedItemsArray = orders[order[0]].order && Object.entries(orders[order[0]].order).map((orderedItems) => {
             console.log(orderedItems)
             return (
-                <div key={orderedItems[0]} className="flex items-center h-20 md:h-24 border-2 border-green-500 rounded-xl overflow-hidden mb-5 sm:mr-5 sm:w-64">
+                <div key={orderedItems[0]} className="flex items-center h-20 md:h-24 border-2 border-green-200 rounded-xl overflow-hidden mb-5 sm:mr-5 sm:w-64">
                     <div className="w-1/2 h-full">
-                        <img className="w-full h-full" src={orderedItems[1].img} alt={orderedItems[1].id} />
+                        <img className="w-full h-full" src={orderedItems[1][1]?.img} alt={orderedItems[1][1]?.id} />
                     </div>
                     <div className="w-full px-3">
-                        <h2 className="font-bold mx-auto w-fit text-stone-600">{orderedItems[1].name}</h2>
-                        <p className="text-sm mx-auto w-fit">Number of orders: <strong className="text-orange-600">{orderedItems[2]}</strong></p>
+                        <h2 className="font-bold mx-auto w-fit text-stone-600">{orderedItems[1][1]?.name}</h2>
+                        <p className="text-sm mx-auto w-fit">Number of orders: <strong className="text-orange-600">{orderedItems[1][2]}</strong></p>
                     </div>
                 </div>
             )
         })
         return (
-            <div key={order[0]} className="overflow-hidden bg-green-100 mb-10 border-2 border-green-500 rounded-3xl">
+            <div key={order[0]} className="overflow-hidden bg-green-100 mb-10 shadow-orange-200 shadow-lg rounded-3xl">
                 <div className="flex items-center ">
                     <div className="w-1/4 font-bold px-3 text-stone-600 ">{order[1].time}</div>
                     <div className="w-3/4 md:w-full flex flex-col md:flex-row md:flex-wrap justify-centergit status p-5">

@@ -36,8 +36,8 @@ const Sidebar = (props) => {
                         className="absolute top-8 right-10 hover:text-red-700"
                         onClick={props.doStuff} />
                     <div onClick={props.doStuff} className="text-3xl mt-9 flex items-center justify-between text-orange-00 font-black mx-4">
-                        <Link to="/">Spicy soups</Link>
-                        {props.user?.email==="admin@admin.com" ? <Link to={home + "/admin"}>
+                        <Link to="/">Tasty foods</Link>
+                        {props.user?.admin ? <Link to={home + "/admin"}>
                             <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
                                 Admin
                             </div>

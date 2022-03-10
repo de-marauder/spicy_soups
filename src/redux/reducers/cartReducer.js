@@ -20,7 +20,10 @@ export const cartReducer = (state = initialState, action) => {
                 newItemCounter[item.id] = (newItemCounter[item.id] || 0) + 1
 
             })
-            // console.log(newItemCounter)
+
+            localStorage.setItem('itemCounter', JSON.stringify({ ...newItemCounter }))
+            localStorage.setItem('cart', JSON.stringify(newCart))
+            
             return {
                 ...state,
                 cart: newCart,
@@ -46,6 +49,10 @@ export const cartReducer = (state = initialState, action) => {
                     delete ItemCounter[action.data.id]
                 }
             }
+
+            localStorage.setItem('itemCounter', JSON.stringify({ ...ItemCounter }))
+            localStorage.setItem('cart', JSON.stringify(newCart))
+
             return {
                 ...state,
                 cart: newCart,
@@ -55,6 +62,7 @@ export const cartReducer = (state = initialState, action) => {
                 counter: newCart.length
             }
         case 'EMPTY_CART':
+            localStorage.clear()
             return {
                 ...state,
                 cart: [],
@@ -64,7 +72,7 @@ export const cartReducer = (state = initialState, action) => {
         case 'SUBMIT_CONTACT_INFO':
             return {
                 ...state,
-                contactInfo: {...action.data}
+                contactInfo: { ...action.data }
             }
         case 'DELETE_CONTACT_INFO':
             return {
@@ -77,18 +85,6 @@ export const cartReducer = (state = initialState, action) => {
                 checkout: true
             }
 
-        // case 'LOGIN':
-        //     // window.localStorage({isAuth: true})
-        //     return {
-        //         ...state,
-        //         isAuth: true
-        //     }
-        // case 'LOGOUT':
-        //     // window.localStorage({isAuth: false})
-        //     return {
-        //         ...state,
-        //         isAuth: false
-        //     }
         default:
             return state
     }

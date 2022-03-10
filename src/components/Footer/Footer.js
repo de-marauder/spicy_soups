@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm/ContactForm';
 import { MdConnectWithoutContact } from 'react-icons/md';
+import { AiFillGithub } from 'react-icons/ai';
 import { IoCallOutline, IoHomeOutline } from 'react-icons/io5';
 // import classes from './Footer.module.css';
 
@@ -25,7 +26,10 @@ const footer = () => {
 
                     </p>
                 </div>
+                <div className='flex flex-wrap'>
                 <p className="absolute bottom-2 opacity-20">&copy; Copyright {date.getFullYear()}, spicysoups.com. All rights reserved</p>
+                <p className="absolute bottom-2 opacity-20">Powered by De-marauder. <a className='hover:text-orange-500' href="https://github.com/de-marauder"><AiFillGithub/></a></p>
+                </div>
             </div>
         </section>
     )

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ref, set, onValue } from "firebase/database";
 
@@ -8,13 +8,19 @@ import OrderSummary from "./OrderSummary";
 
 const Payment = ({ user }) => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
     const order = useSelector((state) => { return state.cartReducer.itemCounter })
     const dispatch = useDispatch()
 
-    console.log(user)
-    console.log(contactInfo)
+    console.log(Object.entries(order).map((entry) => {
+        return {
+            id: entry[0],
+            quantity: entry[1]
+        }
+    }))
+    // console.log(user)
+    // console.log(contactInfo)
 
     // const db = getDatabase(app)
     // const [orders, setOrders] = useState({});
@@ -36,20 +42,50 @@ const Payment = ({ user }) => {
         // console.log({ ...contactInfo, time: date.toString(), order: order })
         // console.log(typeof JSON.stringify(date), date.toString())
         dispatch({ type: "DELETE_CONTACT_INFO" })
-        navigate('success')
+        // navigate('https://buy.stripe.com/test_dR66rjblYaN26uQcMM')
+        // try {
+            fetch("http://localhost:5000/payment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    items: Object.entries(order).map((entry) => {
+                        return {
+                            id: entry[0],
+                            quantity: entry[1]
+                        }
+                    }),
+                })
+            }).then((res) => {
+                console.log(res)
+                if (res.ok) return res.json()
+                return res.json().then((json) => {
+                    console.log(json)
+                    Promise.reject(json)
+                })
+            })
+            .then(({url}) => {
+                // console.log(res)
+                console.log(url)
+                window.location = url
+            })
+        .catch((error) => {
+            console.log("ERROR => ", error)
+        })
     }
 
     useEffect(() => {
         console.log("payment useEffect running ....")
         // user && (
-            onValue(ref(db, '/Orders'), (snap) => {
-                const ExistingOrders = { ...snap.val() }
-                const currOrderNo = Object.entries(ExistingOrders).length + 1
-                // console.log(currOrderNo)
+        onValue(ref(db, '/Orders'), (snap) => {
+            const ExistingOrders = { ...snap.val() }
+            const currOrderNo = Object.entries(ExistingOrders).length + 1
+            // console.log(currOrderNo)
 
-                setOrderNo(ExistingOrders !== null ? currOrderNo : {})
-                console.log("all orders = ", ExistingOrders)
-            })
+            setOrderNo(ExistingOrders !== null ? currOrderNo : {})
+            // console.log("all orders = ", ExistingOrders)
+        })
         // )
         user && (
             onValue(ref(db, `/Users/Customers/customer ${user?.uid}/orders`), (snap) => {
@@ -58,7 +94,7 @@ const Payment = ({ user }) => {
                 // console.log(currOrderNo)
 
                 setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
-                console.log("user orders = ", ExistingOrders)
+                // console.log("user orders = ", ExistingOrders)
             })
         )
         return () => {
@@ -76,7 +112,7 @@ const Payment = ({ user }) => {
                 <div className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 w-full h-80 rounded-3xl flex justify-center items-center">
                     <input type='radio' name='payment-method' id='cash' /><label htmlFor='cash' className="text-6xl font-cabinSketch">Pay cash on delivery</label>
                 </div>
-                <button onClick={makePayment} type={'submit'} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl text-white">Place Order</button>
+                <button onClick={makePayment} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl text-white">Place Order</button>
 
             </div>
             <div className="col-span-1">

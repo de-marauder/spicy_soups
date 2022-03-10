@@ -1,9 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import {
+    useState,
+    useEffect
+} from "react";
 import { Route, Routes, useLocation } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
+import { onValue, ref } from "firebase/database"
 
-import { auth } from '../../firebase-config'
+import { auth, db } from '../../firebase-config'
 import Navbar from '../Navbar';
 import Sidebar from "../Sidebar";
 import Footer from "../Footer/Footer";
@@ -38,12 +42,35 @@ const Site = () => {
         style = " right-0"
     }
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState({})
+    // const [admins, setAdmins] = useState([])
+    console.log(user)
+    // console.log(admins)
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
 
+    useEffect(() => {
+        console.log("useEffect start")
+        try {
+            onValue(ref(db, `Users/Admins`), (snapshot) => {
+                onAuthStateChanged(auth, (currentUser) => {
+                    setUser(currentUser)
+                    const admins = Object.values({ ...snapshot.val() })
+                    setUser({ ...currentUser, admin: admins.includes(currentUser?.email) })
+                    console.log(admins)
+    
+                    console.log("Auth state changed")
+                })
+                console.log("useeffect onValue done. Admin set!")
+               
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
+
+
+    // console.log(admins)
+    // console.log(admins.includes(user.email))
     return (
         <div id="home" className="w-screen font-cabin overflow-hidden">
             <Navbar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
@@ -53,7 +80,9 @@ const Site = () => {
                 <Route path='/signup' element={<SignUp />} />
                 {user &&
                     <>
-                        {user.email==='admin@admin.com' ? <Route path='/admin' element={<Admin user={user} />} />: null}
+                        {/* {user.admin ?  */}
+                        <Route path='/admin' element={<Admin user={user} />} />
+                        {/* : null} */}
                         <Route path='/profile' element={<Profile />} >
                             <Route index={true} element={<Details user1={user} />} />
                             <Route path='orders' element={<MyOrders user={user} />} />

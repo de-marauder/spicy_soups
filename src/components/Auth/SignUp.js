@@ -18,24 +18,6 @@ const SignUp = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState()
 
-    // const [fname, setFname] = useState('')
-    // const [lname, setLname] = useState('')
-    // const [phone, setPhone] = useState('')
-    // const [city, setCity] = useState('')
-    // const [address, setAddress] = useState('')
-
-    // let userData = {
-    //     login: {
-    //         email: email,
-    //         password: password
-    //     },
-    //     fname: fname,
-    //     lname: lname,
-    //     phone: phone,
-    //     city: city,
-    //     address: address
-    // }
-
     const submitContactInfo = async (e) => {
         e.preventDefault()
         try {

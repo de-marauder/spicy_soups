@@ -18,8 +18,8 @@ const PopularDishes = () => {
     const [products, setProducts] = useState({})
 
     let popular = products && Object.values(products).slice(0, 5);
-    console.log(products)
-    console.log(popular)
+    // console.log(products)
+    // console.log(popular)
 
 
     useEffect(() => {

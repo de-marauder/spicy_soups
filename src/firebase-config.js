@@ -3,17 +3,18 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {getDatabase} from "firebase/database";
 
+console.log(process.env.REACT_APP_API_KEY)
 
 const firebaseConfig = {
-    apiKey: "AIzaSyApCWF3FUtNj3SJVJIi4Bw-KTovG_fsRgI",
-    authDomain: "spicy-soups.firebaseapp.com",
-    databaseURL: "https://spicy-soups-default-rtdb.firebaseio.com",
-    projectId: "spicy-soups",
-    storageBucket: "spicy-soups.appspot.com",
-    messagingSenderId: "97262051451",
-    appId: "1:97262051451:web:6aa47e725ef94bda5202de",
-    measurementId: "G-5J98BBBNNN"
-};
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+}
 
 export default firebaseConfig;
 
