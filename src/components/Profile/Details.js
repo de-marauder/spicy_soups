@@ -8,8 +8,8 @@ import Input from "../UI/Input/Input";
 const Details = ({ setUserDetails, userDetails, user, user1, children, child, notProfile }) => {
 
     const navigate = useNavigate()
-    console.log(userDetails)
-    console.log(user)
+    // console.log(userDetails)
+    // console.log(user)
 
     const [userData, setUserData] = useState({
         fname: '',
@@ -19,15 +19,15 @@ const Details = ({ setUserDetails, userDetails, user, user1, children, child, no
         city: '',
         address: '',
     })
-    console.log(userData)
+    // console.log(userData)
 
     const submitContactInfo = async (e) => {
         e.preventDefault()
 
         try {
-            console.log('data RETRIEVED')
-            console.log('userData = ', userData)
-            await set(ref(db, `/Users/Customers/customer ${user?.uid || user1?.uid}/details`), userData)
+            console.log('start sending data...')
+            // console.log('userData = ', userData)
+            await set(ref(db, `/Users/Customers/${user?.uid || user1?.uid}/details`), userData)
             console.log('data sent')
         } catch (error) {
             console.log(error)
@@ -39,15 +39,12 @@ const Details = ({ setUserDetails, userDetails, user, user1, children, child, no
     useEffect(() => {
         (async () => {
             try {
-                // let newObjLength = 0
-                (user || user1) && await onValue(ref(db, `/Users/Customers/customer ${user?.uid || user1?.uid}/details`), (snapshot) => {
+                (user || user1) ? onValue(ref(db, `/Users/Customers/${user?.uid || user1?.uid}/details`), (snapshot) => {
                     const storedUserData = { ...snapshot.val() }
-                    console.log(storedUserData)
+                    // console.log(storedUserData)
                     snapshot.val() && setUserData(storedUserData)
-                    // console.log(userData)
-                    // newObjLength = newObj && Object.keys(newObj).length + 1
                     console.log('data RETRIEVED')
-                })
+                }) :
                 console.log('data NOT RETRIEVED. USER NOT SET')
 
             } catch (error) {

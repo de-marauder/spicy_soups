@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ref, set, onValue } from "firebase/database";
 
@@ -8,7 +8,7 @@ import OrderSummary from "./OrderSummary";
 
 const Payment = ({ user }) => {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
     const order = useSelector((state) => { return state.cartReducer.itemCounter })
     const dispatch = useDispatch()
@@ -19,60 +19,54 @@ const Payment = ({ user }) => {
             quantity: entry[1]
         }
     }))
-    // console.log(user)
-    // console.log(contactInfo)
-
-    // const db = getDatabase(app)
-    // const [orders, setOrders] = useState({});
+    
     const [orderNo, setOrderNo] = useState(0)
     const [userOrderNo, setUserOrderNo] = useState(0)
 
     const makePayment = () => {
         const date = new Date()
 
-        set(ref(db, `Orders/order ${orderNo}`), {
+        set(ref(db, `Orders/${orderNo}`), {
             contactInfo: { ...contactInfo },
             time: date.toString(),
             order: order
         })
-        user && set(ref(db, `/Users/Customers/customer ${user.uid}/orders/order ${userOrderNo}`), {
+        user && set(ref(db, `/Users/Customers/${user.uid}/orders/${userOrderNo}`), {
             time: date.toString(),
             order: order
         })
-        // console.log({ ...contactInfo, time: date.toString(), order: order })
-        // console.log(typeof JSON.stringify(date), date.toString())
+        
         dispatch({ type: "DELETE_CONTACT_INFO" })
-        // navigate('https://buy.stripe.com/test_dR66rjblYaN26uQcMM')
-        // try {
-            fetch("http://localhost:5000/payment", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    items: Object.entries(order).map((entry) => {
-                        return {
-                            id: entry[0],
-                            quantity: entry[1]
-                        }
-                    }),
-                })
-            }).then((res) => {
-                console.log(res)
-                if (res.ok) return res.json()
-                return res.json().then((json) => {
-                    console.log(json)
-                    Promise.reject(json)
-                })
+
+        fetch("http://localhost:5000/payment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                items: Object.entries(order).map((entry) => {
+                    return {
+                        id: entry[0],
+                        quantity: entry[1]
+                    }
+                }),
             })
-            .then(({url}) => {
-                // console.log(res)
+        }).then(async (res) => {
+            var response = await res.json()
+            if (res.ok) return response
+            return Promise.reject(response)
+        })
+            .then(({ url }) => {
                 console.log(url)
                 window.location = url
             })
-        .catch((error) => {
-            console.log("ERROR => ", error)
-        })
+            .catch((error) => {
+                console.log("ERROR => ", error)
+            })
+    }
+    const payCash =()=>{
+        dispatch({type: 'PAY_CASH'})
+        navigate('success')
     }
 
     useEffect(() => {
@@ -88,7 +82,7 @@ const Payment = ({ user }) => {
         })
         // )
         user && (
-            onValue(ref(db, `/Users/Customers/customer ${user?.uid}/orders`), (snap) => {
+            onValue(ref(db, `/Users/Customers/${user?.uid}/orders`), (snap) => {
                 const ExistingOrders = { ...snap.val() }
                 const currOrderNo = Object.entries(ExistingOrders).length + 1
                 // console.log(currOrderNo)
@@ -106,13 +100,12 @@ const Payment = ({ user }) => {
         <>
             <div className="mb-10 sm:mr-5 col-span-2">
 
-                <div className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 w-full h-80 rounded-3xl flex justify-center items-center">
-                    <input type='radio' name='payment-method' id='paystack' /><label htmlFor='paystack' className="text-6xl font-cabinSketch">Pay via Paystack</label>
+                <div onClick={makePayment} className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 hover:from-yellow-100 hover:to-yellow-100 w-full h-fit rounded-3xl flex justify-center items-center">
+                    <p className="text-xl cursor-default md:text-3xl font-gloria">Click to pay online</p>
                 </div>
-                <div className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 w-full h-80 rounded-3xl flex justify-center items-center">
-                    <input type='radio' name='payment-method' id='cash' /><label htmlFor='cash' className="text-6xl font-cabinSketch">Pay cash on delivery</label>
+                <div onClick={payCash} className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 hover:from-yellow-100 hover:to-yellow-100 w-full h-fit rounded-3xl flex justify-center items-center">
+                    <p className="text-xl cursor-default md:text-3xl font-gloria">Click to pay cash on delivery</p>
                 </div>
-                <button onClick={makePayment} className="bg-gradient-to-r from-orange-600 via-orange-300 to-orange-500 hover:via-orange-500 px-4 py-2 rounded-3xl text-white">Place Order</button>
 
             </div>
             <div className="col-span-1">

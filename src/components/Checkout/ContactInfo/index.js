@@ -1,15 +1,11 @@
 import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
 
-// import OrderSummary from "./OrderSummary";
-
 const ContactInfo = () => {
 
     const location = useLocation()
-    // console.log(location.pathname.slice(10))
 
     const cart = useSelector(state => state.cartReducer.cart)
-    // console.log(cart)
 
     let style1 = ''
     let style2 = ''

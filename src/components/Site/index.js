@@ -19,6 +19,7 @@ import ContactInfo from "../Checkout/ContactInfo";
 import ContactInfoForm from "../Checkout/ContactInfo/ContactInfo";
 import Payment from "../Checkout/ContactInfo/Payment";
 import Success from "../Checkout/ContactInfo/Success";
+import Failed from "../Checkout/ContactInfo/Failed";
 import Login from "../Auth/LogIn";
 import SignUp from "../Auth/SignUp";
 import Profile from "../Profile/Profile";
@@ -27,13 +28,10 @@ import Details from "../Profile/Details";
 import Admin from "../Admin/Admin"
 
 
-// const home = "/spicy_soups"
 const Site = () => {
     const [sidebar, sidebarToggler] = useState(true);
 
     const location = useLocation()
-
-    // console.log(location.pathname)
 
     let style
     if (sidebar) {
@@ -43,10 +41,6 @@ const Site = () => {
     }
 
     const [user, setUser] = useState({})
-    // const [admins, setAdmins] = useState([])
-    console.log(user)
-    // console.log(admins)
-
 
     useEffect(() => {
         console.log("useEffect start")
@@ -69,21 +63,17 @@ const Site = () => {
     }, [])
 
 
-    // console.log(admins)
-    // console.log(admins.includes(user.email))
     return (
         <div id="home" className="w-screen font-cabin overflow-hidden">
             <Navbar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(false) }} />
             <Sidebar user={user} sidebar={sidebar} doStuff={() => { sidebarToggler(true) }} style={style} />
             <Routes>
-                <Route path='/login' element={<Login />} />
-                <Route path='/signup' element={<SignUp />} />
+                <Route path='login' element={<Login />} />
+                <Route path='signup' element={<SignUp />} />
                 {user &&
                     <>
-                        {/* {user.admin ?  */}
-                        <Route path='/admin' element={<Admin user={user} />} />
-                        {/* : null} */}
-                        <Route path='/profile' element={<Profile />} >
+                        <Route path='admin' element={<Admin user={user} />} />
+                        <Route path='profile' element={<Profile />} >
                             <Route index={true} element={<Details user1={user} />} />
                             <Route path='orders' element={<MyOrders user={user} />} />
                         </Route>
@@ -91,14 +81,15 @@ const Site = () => {
                 }
             </Routes>
             <Routes>
-                <Route path='/' exact element={<Home />} />
-                <Route path='/menu' exact element={<Menu />} />
-                <Route path='/checkout' element={<CheckOut />} >
+                <Route path='' exact element={<Home />} />
+                <Route path='menu' exact element={<Menu />} />
+                <Route path='checkout' element={<CheckOut />} >
                     <Route index={true} element={<Cart />} />
                     <Route path='contact-info' element={<ContactInfo />} >
                         <Route index={true} element={<ContactInfoForm user={user} />} />
-                        <Route path='payment' index={true} element={<Payment user={user} />} />
-                        <Route path='payment/success' index={true} element={<Success />} />
+                        <Route path='payment' element={<Payment user={user} />} />
+                        <Route path='payment/success' element={<Success />} />
+                        <Route path='payment/failed' element={<Failed />} />
                     </Route>
                 </Route>
             </Routes>

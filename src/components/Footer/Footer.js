@@ -1,15 +1,15 @@
 import ContactForm from './ContactForm/ContactForm';
 import { MdConnectWithoutContact } from 'react-icons/md';
-import { AiFillGithub } from 'react-icons/ai';
+import { AiFillGithub, AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai';
 import { IoCallOutline, IoHomeOutline } from 'react-icons/io5';
 // import classes from './Footer.module.css';
 
 const footer = () => {
     const date = new Date()
 
-     return (
+    return (
         <section className="relative bg-gradient-to-b from-c-green to-black via-black/90 text-white text-center">
-            <div className='p-10'>
+            <div className='p-10 pb-2'>
                 <div className='border-2 w-min p-3 mx-auto border-yellow-500 shadow-contactIconShadow rounded-full'>
                     <MdConnectWithoutContact className="mx-auto w-12 h-12 text-yellow-500 " />
                 </div>
@@ -26,9 +26,18 @@ const footer = () => {
 
                     </p>
                 </div>
-                <div className='flex flex-wrap'>
-                <p className="absolute bottom-2 opacity-20">&copy; Copyright {date.getFullYear()}, spicysoups.com. All rights reserved</p>
-                <p className="absolute bottom-2 opacity-20">Powered by De-marauder. <a className='hover:text-orange-500' href="https://github.com/de-marauder"><AiFillGithub/></a></p>
+                <div className='flex flex-wrap justify-between'>
+                    <p className=" opacity-20">&copy; Copyright {date.getFullYear()}, spicysoups.com. All rights reserved</p>
+                    <div className="w-fit flex flex-col opacity-20">
+                        <p>
+                            Powered by De-marauder.
+                        </p>
+                        <div className='flex'>
+                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillGithub className='w-fit' /></a>
+                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillTwitterCircle className='w-fit' /></a>
+                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillLinkedin className='w-fit' /></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

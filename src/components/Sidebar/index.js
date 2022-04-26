@@ -10,14 +10,11 @@ import SocialLinks from "../UI/utilities/SocialLinks";
 import Backdrop from "../UI/Backdrop/Backdrop"
 
 
-const home = "";
-
 const Sidebar = (props) => {
 
     const navigate = useNavigate()
 
     const counter = useSelector((state) => state.cartReducer.counter)
-    // console.log('user = ', props.user)
 
     const cartCounter = counter ?
         (
@@ -36,8 +33,8 @@ const Sidebar = (props) => {
                         className="absolute top-8 right-10 hover:text-red-700"
                         onClick={props.doStuff} />
                     <div onClick={props.doStuff} className="text-3xl mt-9 flex items-center justify-between text-orange-00 font-black mx-4">
-                        <Link to="/">Tasty foods</Link>
-                        {props.user?.admin ? <Link to={home + "/admin"}>
+                        <Link to="/">Spicy soups</Link>
+                        {props.user?.admin ? <Link to={"/admin"}>
                             <div className="bg-green-600 w-fit text-sm rounded-md cursor-pointer shadow-xl hover:bg-orange-600 py-1 px-3">
                                 Admin
                             </div>
@@ -45,17 +42,17 @@ const Sidebar = (props) => {
                     </div>
                     <hr className="w-full m-auto" />
                     <ul onClick={props.doStuff} className="flex flex-col">
-                        <Link className="hover:border-b-2 hover:border-orange-600" to={home + "/"}>
+                        <Link className="hover:border-b-2 hover:border-orange-600" to={"/"}>
                             <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 px-3">
                                 Home
                             </li>
                         </Link>
-                        <Link className="hover:border-b-2 hover:border-orange-600" to={home + "/menu"}>
+                        <Link className="hover:border-b-2 hover:border-orange-600" to={"/menu"}>
                             <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 px-3">
                                 Menu
                             </li>
                         </Link>
-                        <Link className="relative hover:border-b-2 hover:border-orange-600" to={home + "/checkout"}>
+                        <Link className="relative hover:border-b-2 hover:border-orange-600" to={"/checkout"}>
                             <li className="hover:text-orange-600 pb-5 pt-7 cursor-pointer hover:pb-4 px-3">
                                 Checkout
                             </li>
@@ -71,7 +68,6 @@ const Sidebar = (props) => {
                                     <p className="">Profile</p>
                                 </div>
                                 <div onClick={() => { signOut(auth); navigate('/') }} className="flex justify-center gap-1 items-center text-lg px-2 lg:px-4 lg:py-1 bg-orange-700/80 hover:cursor-pointer hover:bg-orange-500/80 rounded-3xl">
-                                    {/* <span><IoIosContact className='text-orange-600' /></span> */}
                                     <p className="">Log out</p>
                                 </div>
                             </div> :

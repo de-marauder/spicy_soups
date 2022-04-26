@@ -5,11 +5,11 @@ import { db } from "../../firebase-config"
 // import { makeAdmin } from "../../../functions"
 
 const Admin = ({ user }) => {
-    const [userToAdmin, setUserAsAdmin] = useState()
+    const [userToAdmin, setUserAsAdmin] = useState('')
     const [orders, setOrders] = useState({})
     // const [products, setProducts] = useState()
 
-    console.log(orders)
+    // console.log(orders)
 
     const changeUserToAdmin = (e) => {
         e.preventDefault()
@@ -33,7 +33,6 @@ const Admin = ({ user }) => {
     }
 
     useEffect(() => {
-
         try {
             let OrdersCopy = {}
             user && onValue(ref(db, `/Orders`), (snapshot) => {
@@ -78,7 +77,7 @@ const Admin = ({ user }) => {
                     let contactInfo = order[1].contactInfo
                     newOrders[order[0]] = { ...newOrders[order[0]], time: time, contactInfo: contactInfo }
                 })
-                console.log(newOrders)
+                // console.log(newOrders)
                 setOrders(newOrders)
             })
 
@@ -91,9 +90,9 @@ const Admin = ({ user }) => {
     }, [user])
 
     const cartItems = orders ? Object.entries(orders).map((order) => {
-        console.log(orders[order[0]].order)
+        // console.log(orders[order[0]].order)
         const orderedItemsArray = orders[order[0]].order && Object.entries(orders[order[0]].order).map((orderedItems) => {
-            console.log(orderedItems)
+            // console.log(orderedItems)
             return (
                 <div key={orderedItems[0]} className="flex items-center h-20 md:h-24 border-2 border-green-200 rounded-xl overflow-hidden mb-5 sm:mr-5 sm:w-64">
                     <div className="w-1/2 h-full">
@@ -115,9 +114,9 @@ const Admin = ({ user }) => {
                     </div>
                 </div>
                 <div className="text-xl bg-c-green rounded-3xl text-orange-500 py-10">
-                    <p><span className="text-slate-100">Name:</span> {order[1].contactInfo.fname + ' ' + order[1].contactInfo.lname} </p>
-                    <p><span className="text-slate-100">Time of delivery:</span> {(order[1].contactInfo.delTime && order[1].contactInfo.delDay) ? order[1].contactInfo.delTime + '  ' + order[1].contactInfo.delDay : null} </p>
-                    <p><span className="text-slate-100">Address:</span> {order[1].contactInfo.address + ' ' + order[1].contactInfo.city} </p>
+                    <p><span className="text-slate-100">Name:</span> {`${order[1].contactInfo?.fname ? order[1].contactInfo.fname : ''} ${order[1].contactInfo?.lname ? order[1].contactInfo.lname: ''}`} </p>
+                    <p><span className="text-slate-100">Time of delivery:</span> {(order[1].contactInfo?.delTime ? order[1].contactInfo?.delDay : '') ? order[1].contactInfo.delTime + '  ' + order[1].contactInfo.delDay : null} </p>
+                    <p><span className="text-slate-100">Address:</span> {`${order[1].contactInfo?.address ? order[1].contactInfo.address : ''} ${order[1].contactInfo?.city ? order[1].contactInfo?.city: ''}`} </p>
                 </div>
             </div>
         )

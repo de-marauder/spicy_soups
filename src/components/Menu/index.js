@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-// import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from 'firebase/database'
 
 import Hero from '../Hero'
 import MenuBody from './MenuBody';
 import MenuCard from './MenuCard';
 import Button from '../UI/Button/Button';
-// import products from "./Products";
 import { app } from '../../firebase-config';
 
 

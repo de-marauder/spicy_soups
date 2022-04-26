@@ -12,14 +12,11 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:3000"
+    origin: "http://localhost:3000" || process.env.GITHUB_HOME
 }))
-
+// const port = process.env.PORT || 5000
 console.log("Starting up ...")
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-
-// let products = {};
-// console.log("Stripe => ", stripe)
 
 app.post('/payment', async (req, res) => {
     console.log("before try block")
@@ -88,16 +85,13 @@ app.post('/payment', async (req, res) => {
                 console.log("Response after creating session", session)
                 res.json({ url: session.url })
             })
-        // }).then((res) => {
-
         })
-        // .catch(error => console.log("RTDB ERROR ", error))
-        // console.log("products", products)
-        // const products = await fetch("https://spicy-soups-default-rtdb.firebaseio.com/Products")
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: error.message })
     }
 })
 
-app.listen(5000)
+app.listen(5000, ()=>{
+    console.log(`listening on port...`)
+})

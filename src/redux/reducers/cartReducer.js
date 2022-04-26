@@ -1,8 +1,8 @@
 
 const initialState = {
-    cart: [],
-    counter: 0,
-    itemCounter: {},
+    cart: JSON.parse(localStorage.getItem('cart')) || [],
+    counter: JSON.parse(localStorage.getItem('counter')) || 0,
+    itemCounter: JSON.parse(localStorage.getItem('itemCounter')) || {},
     checkout: null
 }
 
@@ -23,6 +23,7 @@ export const cartReducer = (state = initialState, action) => {
 
             localStorage.setItem('itemCounter', JSON.stringify({ ...newItemCounter }))
             localStorage.setItem('cart', JSON.stringify(newCart))
+            localStorage.setItem('counter', JSON.stringify(newCart.length))
             
             return {
                 ...state,
@@ -52,6 +53,7 @@ export const cartReducer = (state = initialState, action) => {
 
             localStorage.setItem('itemCounter', JSON.stringify({ ...ItemCounter }))
             localStorage.setItem('cart', JSON.stringify(newCart))
+            localStorage.setItem('counter', JSON.stringify(newCart.length))
 
             return {
                 ...state,
@@ -67,7 +69,8 @@ export const cartReducer = (state = initialState, action) => {
                 ...state,
                 cart: [],
                 counter: 0,
-                itemCounter: null
+                itemCounter: null,
+                payCash: false
             }
         case 'SUBMIT_CONTACT_INFO':
             return {
@@ -83,6 +86,11 @@ export const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 checkout: true
+            }
+        case 'PAY_CASH':
+            return {
+                ...state,
+                payCash: true
             }
 
         default:

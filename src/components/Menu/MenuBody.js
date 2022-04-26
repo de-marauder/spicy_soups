@@ -49,7 +49,7 @@ const MenuBody = (props) => {
             <div className="pt-10 text-orange-600 flex justify-around w-3/4 sm:justify-around sm:w-2/4" >
                 <Button disabled={props.disabled} doStuff={props.loadMore} className="hover:text-white">Load More</Button>
                 {cart.length > 0 ? <Button doStuff={() => {
-                    navigate('/checkout')
+                    navigate('checkout')
                 }} className="hover:text-white">Checkout</Button> : null}
             </div>
         </div >

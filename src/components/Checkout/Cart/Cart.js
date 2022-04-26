@@ -5,7 +5,7 @@ import Button from "../../UI/Button/Button";
 import N from "../../UI/utilities/Naira/N";
 import CartProduct from "./CartProduct";
 
-const home = "" //"/spicy_soups/checkout"
+
 const Cart = () => {
 
     const cart = useSelector((state) => state.cartReducer)
@@ -118,7 +118,7 @@ const Cart = () => {
                             <p><N />{deliveryFee + subTotal}</p>
                         </strong>
                     </div>
-                    <NavLink to={home + "contact-info"}>
+                    <NavLink to={"contact-info"}>
                         <Button disabled={(itemCounter === null) ? true :  (Object.keys(itemCounter).length <= 0 ? true : false)} className="py-2 w-fit sm:w-3/4 hover:relative hover:text-white hover:top-1">CHECKOUT</Button>
                     </NavLink>
                 </div>
