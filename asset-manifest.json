@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/spicy_soups/static/js/main.e91a5ab4.js",
-    "static/media/agreement.png": "/spicy_soups/static/media/agreement.50f039b136e08e6cb4cc.png",
-    "static/media/commercial.png": "/spicy_soups/static/media/commercial.c7c6a966aa0beb65cffc.png",
-    "static/media/investment.png": "/spicy_soups/static/media/investment.33592a62560023bb6ff6.png",
-    "static/media/email-mail-pngrepo-com.png": "/spicy_soups/static/media/email-mail-pngrepo-com.6908c354c144c4b38df2.png",
-    "index.html": "/spicy_soups/index.html",
-    "main.e91a5ab4.js.map": "/spicy_soups/static/js/main.e91a5ab4.js.map"
+    "main.js": "./static/js/main.a4076195.js",
+    "static/media/agreement.png": "./static/media/agreement.50f039b136e08e6cb4cc.png",
+    "static/media/commercial.png": "./static/media/commercial.c7c6a966aa0beb65cffc.png",
+    "static/media/investment.png": "./static/media/investment.33592a62560023bb6ff6.png",
+    "static/media/email-mail-pngrepo-com.png": "./static/media/email-mail-pngrepo-com.6908c354c144c4b38df2.png",
+    "index.html": "./index.html",
+    "main.a4076195.js.map": "./static/js/main.a4076195.js.map"
   },
   "entrypoints": [
-    "static/js/main.e91a5ab4.js"
+    "static/js/main.a4076195.js"
   ]
 }
