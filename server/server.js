@@ -12,13 +12,13 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:3000" || process.env.GITHUB_HOME
+    origin: "http://localhost:3000" || process.env.PROD_URL
 }))
 // const port = process.env.PORT || 5000
 console.log("Starting up ...")
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
-app.post('/payment', async (req, res) => {
+app.post('api/payment', async (req, res) => {
     console.log("before try block")
     try {
         console.log("before onValue block ")

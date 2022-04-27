@@ -42,7 +42,7 @@ const Payment = () => {
         
         // dispatch({ type: "DELETE_CONTACT_INFO" })
 
-        fetch("http://localhost:5000/payment", {
+        fetch("https://spicy-soups.netlify.app/api/payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
