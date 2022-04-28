@@ -24,23 +24,6 @@ const Payment = () => {
     // const [userOrderNo, setUserOrderNo] = useState(0)
 
     const makePayment = () => {
-        // const date = new Date()
-
-        // set(ref(db, `Orders/${orderNo}`), {
-        //     contactInfo: { ...contactInfo },
-        //     time: date.toString(),
-        //     order: order
-        // })
-        // user && set(ref(db, `/Users/Customers/${user.uid}/orders/${userOrderNo}`), {
-        //     time: date.toString(),
-        //     order: order
-        // })
-        // console.log('payment ===> user_id: ', user.uid)
-        // user && set(ref(db, `/Users/Customers/${user.uid}`), {
-        //     contactInfo: { ...contactInfo }
-        // })
-        
-        // dispatch({ type: "DELETE_CONTACT_INFO" })
 
         fetch(process.env.REACT_APP_SERVER_URL || "localhost:5000/api/payment", {
             method: "POST",
