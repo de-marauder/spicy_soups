@@ -1,7 +1,7 @@
 require("dotenv").config()
 
 const express = require("express")
-// const fetch = require("node-fetch");
+
 const { onValue, ref } = require("firebase/database")
 
 const db = require('./firebase-config').default
@@ -12,10 +12,13 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: "http://localhost:3000" || process.env.PROD_URL
+    origin: process.env.PROD_URL || "http://localhost:3000"
 }))
-// const port = process.env.PORT || 5000
+
+const port = process.env.PORT || 5000
+
 console.log("Starting up ...")
+
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
 app.post('api/payment', async (req, res) => {
@@ -92,6 +95,6 @@ app.post('api/payment', async (req, res) => {
     }
 })
 
-app.listen(5000, ()=>{
-    console.log(`listening on port...`)
+app.listen(port, ()=>{
+    console.log(`listening on port ${port}...`)
 })
