@@ -12,10 +12,7 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: [
-        process.env.PROD_URL, 
-        "http://localhost:3000/"
-    ]
+    origin: ["https://spicy-soups.netlify.app/", "http://localhost:3000"]
 }))
 
 const port = process.env.PORT || 5000
