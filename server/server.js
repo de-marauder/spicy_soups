@@ -12,7 +12,9 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: ["https://spicy-soups.netlify.app/", "http://localhost:3000"]
+    origin: 
+    "https://spicy-soups.netlify.app"
+    // "http://localhost:3000"
 }))
 
 const port = process.env.PORT || 5000
@@ -33,7 +35,8 @@ app.get('/api/payment', async (req, res) => {
 
 app.post('/api/payment', async (req, res) => {
     console.log("before try block")
-    // res.write(`${res}`)
+    console.log(`res ==> ${res}`)
+    res.append("Access-Control-Allow-Origin", "https://spicy-soups.netlify.app")
     try {
         console.log("before onValue block ")
         onValue(ref(db, '/Products'), (snapshot) => {
@@ -94,8 +97,8 @@ app.post('/api/payment', async (req, res) => {
                 ],
                 payment_method_types: ['card'],
                 mode: 'payment',
-                success_url: `${process.env.CLIENT_URL || process.env.GITHUB_HOME}/spicy_soups/checkout/contact-info/payment/success`,
-                cancel_url: `${process.env.CLIENT_URL || process.env.GITHUB_HOME}/spicy_soups/checkout/contact-info/payment/failed`
+                success_url: `${process.env.PROD_URL}/checkout/contact-info/payment/success`,
+                cancel_url: `${process.env.PROD_URL}/checkout/contact-info/payment/failed`
             }).then((session) => {
                 console.log("Response after creating session", session)
                 res.json({ url: session.url })
