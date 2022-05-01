@@ -12,7 +12,10 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors({
-    origin: process.env.PROD_URL || "http://localhost:3000"
+    origin: [
+        process.env.PROD_URL, 
+        "http://localhost:3000/"
+    ]
 }))
 
 const port = process.env.PORT || 5000
@@ -21,8 +24,19 @@ console.log("Starting up ...")
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 
-app.post('api/payment', async (req, res) => {
+app.post('/api/luck', async (req, res) => {
+    console.log(`${req.url} endpoint hit`)
+    res.status(200).json(JSON.stringify({message: "success"}))
+})
+app.get('/api/payment', async (req, res) => {
+    console.log(`${req.url} endpoint hit`)
+
+    res.send(`hello i'm running at ${req.hostname}:${port}`)
+})
+
+app.post('/api/payment', async (req, res) => {
     console.log("before try block")
+    // res.write(`${res}`)
     try {
         console.log("before onValue block ")
         onValue(ref(db, '/Products'), (snapshot) => {
@@ -32,6 +46,7 @@ app.post('api/payment', async (req, res) => {
 
             // console.log(products)
             console.log("products got", products)
+            console.log("items got ==> ", req.body.items)
             stripe.checkout.sessions.create({
                 line_items: req.body.items.map((item) => {
                     let orderedItem = {}

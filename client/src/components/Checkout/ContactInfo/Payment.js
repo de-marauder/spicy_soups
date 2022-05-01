@@ -1,15 +1,15 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { ref, set, onValue } from "firebase/database";
+import { ref, set, onValue } from "firebase/database";
 
-// import { db } from '../../../firebase-config'
+import { db } from '../../../firebase-config'
 import OrderSummary from "./OrderSummary";
 
-const Payment = () => {
+const Payment = ({user}) => {
 
     const navigate = useNavigate()
-    // const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
+    const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
     const order = useSelector((state) => { return state.cartReducer.itemCounter })
     const dispatch = useDispatch()
 
@@ -20,12 +20,29 @@ const Payment = () => {
         }
     }))
     
-    // const [orderNo, setOrderNo] = useState(0)
-    // const [userOrderNo, setUserOrderNo] = useState(0)
+    const [orderNo, setOrderNo] = useState(0)
+    const [userOrderNo, setUserOrderNo] = useState(0)
 
     const makePayment = () => {
+        const date = new Date()
 
-        fetch(process.env.REACT_APP_SERVER_URL || "localhost:5000/api/payment", {
+        set(ref(db, `Orders/${orderNo}`), {
+            contactInfo: { ...contactInfo },
+            time: date.toString(),
+            order: order
+        })
+        user && set(ref(db, `/Users/Customers/${user.uid}/orders/${userOrderNo}`), {
+            time: date.toString(),
+            order: order
+        })
+        console.log('payment ===> user_id: ', user.uid)
+        user && set(ref(db, `/Users/Customers/${user.uid}`), {
+            contactInfo: { ...contactInfo }
+        })
+        
+        dispatch({ type: "DELETE_CONTACT_INFO" })
+        // process.env.REACT_APP_SERVER_URL || 
+        fetch("https://spicy-soups.herokuapp.com/api/payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,8 +56,14 @@ const Payment = () => {
                 }),
             })
         }).then(async (res) => {
+
             var response = await res.json()
-            if (res.ok) return response
+            console.log(response)
+            if (res.ok) {
+                console.log("res is ok")
+                return response
+            }
+            console.log("res is not ok!")
             return Promise.reject(response)
         })
             .then(({ url }) => {
@@ -56,32 +79,32 @@ const Payment = () => {
         navigate('success')
     }
 
-    // useEffect(() => {
-    //     console.log("payment useEffect running ....")
-    //     // user && (
-    //     onValue(ref(db, '/Orders'), (snap) => {
-    //         const ExistingOrders = { ...snap.val() }
-    //         const currOrderNo = Object.entries(ExistingOrders).length + 1
-    //         // console.log(currOrderNo)
+    useEffect(() => {
+        console.log("payment useEffect running ....")
+        // user && (
+        onValue(ref(db, '/Orders'), (snap) => {
+            const ExistingOrders = { ...snap.val() }
+            const currOrderNo = Object.entries(ExistingOrders).length + 1
+            // console.log(currOrderNo)
 
-    //         setOrderNo(ExistingOrders !== null ? currOrderNo : {})
-    //         // console.log("all orders = ", ExistingOrders)
-    //     })
-    //     // )
-    //     user && (
-    //         onValue(ref(db, `/Users/Customers/${user?.uid}/orders`), (snap) => {
-    //             const ExistingOrders = { ...snap.val() }
-    //             const currOrderNo = Object.entries(ExistingOrders).length + 1
-    //             // console.log(currOrderNo)
+            setOrderNo(ExistingOrders !== null ? currOrderNo : {})
+            // console.log("all orders = ", ExistingOrders)
+        })
+        // )
+        user && (
+            onValue(ref(db, `/Users/Customers/${user?.uid}/orders`), (snap) => {
+                const ExistingOrders = { ...snap.val() }
+                const currOrderNo = Object.entries(ExistingOrders).length + 1
+                // console.log(currOrderNo)
 
-    //             setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
-    //             // console.log("user orders = ", ExistingOrders)
-    //         })
-    //     )
-    //     return () => {
-    //         setOrderNo(0)
-    //     }
-    // }, [user])
+                setUserOrderNo(ExistingOrders !== null ? currOrderNo : {})
+                // console.log("user orders = ", ExistingOrders)
+            })
+        )
+        return () => {
+            setOrderNo(0)
+        }
+    }, [user])
 
     return (
         <>
