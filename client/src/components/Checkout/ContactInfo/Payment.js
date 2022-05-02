@@ -41,8 +41,8 @@ const Payment = ({user}) => {
         })
         
         dispatch({ type: "DELETE_CONTACT_INFO" })
-        // process.env.REACT_APP_SERVER_URL || "https://spicy-soups.herokuapp.com/api/payment"
-        fetch("http://localhost:5000/api/payment", {
+        // process.env.REACT_APP_SERVER_URL || "http://localhost:5000/api/payment"
+        fetch("https://spicy-soups.herokuapp.com/api/payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
