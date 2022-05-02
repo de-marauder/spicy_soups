@@ -41,8 +41,8 @@ const Payment = ({user}) => {
         })
         
         dispatch({ type: "DELETE_CONTACT_INFO" })
-        // process.env.REACT_APP_SERVER_URL || "http://localhost:5000/api/payment"
-        fetch("https://spicy-soups.herokuapp.com/api/payment", {
+        // process.env.REACT_APP_SERVER_URL || || "https://spicy-soups.herokuapp.com/api/payment" || "http://localhost:5000/api/payment"
+        fetch("http://localhost:5000/api/payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -66,13 +66,13 @@ const Payment = ({user}) => {
             console.log("res is not ok!")
             return Promise.reject(response)
         })
-            .then(({ url }) => {
-                // console.log(url)
-                window.location = url
-            })
-            .catch((error) => {
-                console.log("ERROR => ", error)
-            })
+        .then(({ url }) => {
+            // console.log(url)
+            window.location = url
+        })
+        .catch((error) => {
+            console.log("ERROR => ", error)
+        })
     }
     const payCash =()=>{
         dispatch({type: 'PAY_CASH'})
