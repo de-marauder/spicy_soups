@@ -47,9 +47,13 @@ console.log("Starting up ...")
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 // console.log(stripe)
-app.post('/api/luck', async (req, res) => {
+app.get('/api/luck', async (req, res) => {
     console.log(`${req.url} endpoint hit`)
-    res.status(200).json(JSON.stringify({message: "success"}))
+    onValue(ref(db, '/Orders'), (snap)=>{
+        console.log("luck on value hit")
+        var orders = {...snap.val()}
+        res.status(200).json(JSON.stringify({message: "success", order: orders}))
+    })
 })
 // app.get('/api/payment', async (req, res) => {
 //     console.log(`${req.url} endpoint hit`)
@@ -78,8 +82,8 @@ app.post('/api/payment', async (req, res) => {
                 console.log("inside then after onValue block before session ")
         
                 // console.log(products)
-                console.log("products got", products)
-                console.log("items got ==> ", req.body.items)
+                console.log("products got")
+                console.log("items got ==> ")
                 stripe.checkout.sessions.create({
                     line_items: req.body.items.map((item) => {
                         let orderedItem = {}
