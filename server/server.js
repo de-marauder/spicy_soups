@@ -11,42 +11,43 @@ const app = express()
 const cors = require('cors')
 
 app.use(express.json())
-app.use(cors({
-    origin: "*"
-}))
 
-const port = process.env.PORT || 5000
+var whitelist = ['https://spicy-soups.vercel.app', 'https://spicy-soups.netlify.app', 'http://localhost:3000']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+app.use(cors(corsOptionsDelegate))
+
+const API_KEY = "AIzaSyApCWF3FUtNj3SJVJIi4Bw-KTovG_fsRgI"
+const AUTH_DOMAIN = "spicy-soups.firebaseapp.com"
+const DATABASE_URL = "https://spicy-soups-default-rtdb.firebaseio.com"
+const PROJECT_ID = "spicy-soups"
+const STORAGE_BUCKET = "spicy-soups.appspot.com"
+const MESSAGING_SENDER_ID = "97262051451"
+const APP_ID = "1:97262051451:web:6aa47e725ef94bda5202de"
+const MEASUREMENT_ID = "G-5J98BBBNNN"
+
+const STRIPE_PRIVATE_KEY= "sk_test_51Kb0rsHzfGhmTNy7ZUh8du9KpqCSIOZ53bZuD8q9zMTQbi5wIS5YUsdtiyzpLtWyRuWBG7HGGubOeuYWrCZIzglj00WG8nasGK"
+// const ClIENT_URL= "http://localhost:3000"
+const PORT=5000
+// const GITHUB_HOME="https://de-marauder.github.io/spicy_soups/"
+const PROD_URL= "https://spicy-soups.netlify.app"
+
+const port =   process.env.PORT || PORT
 
 console.log("Starting up ...")
 
-// function MakeCORSRequest(func) {
-//     return onValue((req, res) => {
-//       res.set('Access-Control-Allow-Origin', '*');
-//       if (req.method === 'OPTIONS') {
-//         // Send response to OPTIONS requests
-//         res.set('Access-Control-Allow-Methods', 'GET, POST');
-//         res.set('Access-Control-Allow-Headers', 'Content-Type');
-//         res.set('Access-Control-Max-Age', '3600');
-//         res.status(204).send('');
-//       } else {
-//         return func(req, res);
-//       }
-//     });
-//   }
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     if (req.method === 'OPTIONS') {
-//         // Send response to OPTIONS requests
-//         res.set('Access-Control-Allow-Methods', 'GET, POST');
-//         res.set('Access-Control-Allow-Headers', 'Content-Type');
-//         res.set('Access-Control-Max-Age', '3600');
-//         res.status(204).send("We're good!");
-//       } 
-//     next();
-// });
 
-const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
-// console.log(stripe)
+
+const stripe = require("stripe")(  STRIPE_PRIVATE_KEY)
+
 app.get('/api/luck', async (req, res) => {
     console.log(`${req.url} endpoint hit`)
     onValue(ref(db, '/Orders'), (snap)=>{
@@ -55,24 +56,10 @@ app.get('/api/luck', async (req, res) => {
         res.status(200).json(JSON.stringify({message: "success", order: orders}))
     })
 })
-// app.get('/api/payment', async (req, res) => {
-//     console.log(`${req.url} endpoint hit`)
-
-//     res.send(`hello i'm running at ${req.hostname}:${port}`)
-// })
+app.options('/api/payment') // enable pre-flight request for POST request
 
 app.post('/api/payment', async (req, res) => {
     console.log("before try block")
-    // console.log(`res ==> ${res}`)
-    // res.set("Access-Control-Allow-Origin", "https://spicy-soups.netlify.app")
-    // res.set("Access-Control-Allow-heade", true)
-    // res.set('Access-Control-Allow-Origin', '*');
-    // if (req.method === 'OPTIONS') {
-    //   // Send response to OPTIONS requests
-    //   res.set('Access-Control-Allow-Methods', 'GET, POST');
-    //   res.set('Access-Control-Allow-Headers', 'Content-Type');
-    //   res.set('Access-Control-Max-Age', '3600');
-    // }
     try {
         console.log("before onValue block ")
         // MakeCORSRequest( async (req, res)=>{
@@ -134,8 +121,8 @@ app.post('/api/payment', async (req, res) => {
                     ],
                     payment_method_types: ['card'],
                     mode: 'payment',
-                    success_url: `${process.env.PROD_URL}/checkout/contact-info/payment/success`,
-                    cancel_url: `${process.env.PROD_URL}/checkout/contact-info/payment/failed`
+                    success_url: `${  PROD_URL}/checkout/contact-info/payment/success`,
+                    cancel_url: `${  PROD_URL}/checkout/contact-info/payment/failed`
                 }).then((session) => {
                     console.log("Response after creating session", session)
                     res.json({ url: session.url })

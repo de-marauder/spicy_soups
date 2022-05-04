@@ -6,9 +6,7 @@ import { db } from "../../firebase-config"
 const Admin = ({ user }) => {
     const [userToAdmin, setUserAsAdmin] = useState('')
     const [orders, setOrders] = useState({})
-    // const [products, setProducts] = useState()
-
-    // console.log(orders)
+    
 
     const changeUserToAdmin = (e) => {
         e.preventDefault()
@@ -36,22 +34,19 @@ const Admin = ({ user }) => {
             let OrdersCopy = {}
             user && onValue(ref(db, `/Orders`), (snapshot) => {
                 const storedUserData = { ...snapshot.val() }
-                // console.log(storedUserData)
                 snapshot.val() && setOrders(storedUserData)
-                // console.log(userOrders)
-                console.log('data RETRIEVED')
+                // console.log('data RETRIEVED')
                 OrdersCopy = storedUserData
             })
-            console.log('data NOT RETRIEVED. USER NOT SET')
+            // console.log('data NOT RETRIEVED. USER NOT SET')
 
             let productsCopy = []
 
             user && onValue(ref(db, `/Products`), (snapshot) => {
                 const storedUserData = { ...snapshot.val() }
-                // console.log(storedUserData)
-                // snapshot.val() && setProducts(Object.values(storedUserData))
-                // console.log(userData)
-                console.log('data RETRIEVED')
+                
+                
+                // console.log('data RETRIEVED')
                 productsCopy = Object.values(storedUserData)
 
                 let newOrders = {}

@@ -12,7 +12,6 @@ import Hero from "../Hero";
 const SignUp = () => {
 
     const navigate = useNavigate()
-    // const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -25,8 +24,6 @@ const SignUp = () => {
             const user = await createUserWithEmailAndPassword(auth, email, password)
             console.log(user)
             
-
-            // dispatch({type:'LOGIN'})
             navigate('/profile')
         } catch (error) {
             console.log(error.message)
@@ -34,7 +31,7 @@ const SignUp = () => {
         }
 
     }
-    //  block sm:flex md:flex-row sm:justify-around
+
     return (
         <Hero className="h-screen text-center sm:pt-40 overflow-y-scroll sm:overflow-y-hidden text-white ">
             <div className="sm:flex sm:flex-row sm:justify-around justify-center items-center mb-10">

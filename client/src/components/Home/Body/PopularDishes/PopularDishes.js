@@ -8,6 +8,7 @@ import Button from "../../../UI/Button/Button";
 // import Products from "../../../Menu/Products";
 import N from "../../../UI/utilities/Naira/N";
 import { app } from "../../../../firebase-config"
+import Spinner from '../../../UI/Spinner/Spinner';
 
 const PopularDishes = () => {
 
@@ -16,6 +17,7 @@ const PopularDishes = () => {
     const buttonStyle = " hover:relative hover:top-1 "
 
     const [products, setProducts] = useState({})
+    const [spinner, setSpinner] = useState(false)
 
     let popular = products && Object.values(products).slice(0, 5);
     // console.log(products)
@@ -23,9 +25,11 @@ const PopularDishes = () => {
 
 
     useEffect(() => {
+        setSpinner(true)
         onValue(ref(getDatabase(app), 'Products/'), (snapshot) => {
             const newProducts = { ...snapshot.val() }
             setProducts(newProducts)
+            setSpinner(false)
         })
     }, [])
 
@@ -46,6 +50,7 @@ const PopularDishes = () => {
 
     return (
         <div className="py-20" >
+            {spinner ? <Spinner /> : null}
             <div>
                 <p className="font-great text-2xl sm:text-3xl">Relieve your taste buds</p>
                 <strong className="font-neon text-orange-600 text-4xl sm:text-6xl md:text-8xl">Popular Dishes</strong>

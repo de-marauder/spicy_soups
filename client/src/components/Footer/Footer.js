@@ -34,8 +34,8 @@ const footer = () => {
                         </p>
                         <div className='flex'>
                             <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillGithub className='w-fit' /></a>
-                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillTwitterCircle className='w-fit' /></a>
-                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://github.com/de-marauder"><AiFillLinkedin className='w-fit' /></a>
+                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://twitter.com/De_marauder"><AiFillTwitterCircle className='w-fit' /></a>
+                            <a className='hover:text-orange-500 mx-auto w-fit' href="https://www.linkedin.com/in/obiajulu-ezike/"><AiFillLinkedin className='w-fit' /></a>
                         </div>
                     </div>
                 </div>

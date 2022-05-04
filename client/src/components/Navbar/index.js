@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
-// import { ref, onValue } from "firebase/database";
 
 import { auth } from "../../firebase-config"
 import { CgMenuGridR } from "react-icons/cg"

@@ -6,11 +6,14 @@ import MenuBody from './MenuBody';
 import MenuCard from './MenuCard';
 import Button from '../UI/Button/Button';
 import { app } from '../../firebase-config';
+import Spinner from '../UI/Spinner/Spinner';
 
 
 
 
 const Menu = () => {
+
+    const [spinner, setSpinner] = useState(false)
 
     const [products, setProducts] = useState({})
     const [mealno, setMealno] = useState(4);
@@ -18,10 +21,9 @@ const Menu = () => {
     const [meals, setMeals] = useState((mealArray.length > 0) ? mealArray.map((el, id) => <MenuCard key={id} el={el} />) : '');
 
     const loadMore = () => {
-        // console.log("loadmore active")
 
         let meal = meals
-        // console.log(mealno)
+
         if (mealno <= Object.keys(products).length) {
             if (Object.keys(products).length - mealno > 3) {
                 setMealno(mealno + 3)
@@ -33,11 +35,8 @@ const Menu = () => {
                 setMealno(mealno + 1)
             }
 
-            // console.log(mealArray)
             meal = mealArray.map((el, id) => <MenuCard key={id} el={el} />)
             setMeals(meal)
-            // console.log("setting meal")
-            // console.log(meal)
         } else
             setMeals(meal)
     }
@@ -62,13 +61,13 @@ const Menu = () => {
     }
 
     useEffect(() => {
-
+        setSpinner(true)
         onValue(ref(getDatabase(app), 'Products/'), (snapshot) => {
             const newProducts = { ...snapshot.val() }
             setProducts(newProducts)
             const newMealArray = Object.values(newProducts).slice(0, 4);
-
             setMeals(newMealArray.map((el, id) => <MenuCard key={id} el={el} />))
+            setSpinner(false)
         })
     }, [])
 
@@ -76,6 +75,7 @@ const Menu = () => {
 
     return (
         <>
+        {spinner? <Spinner/> : null}
             <Hero className="space-y-20 flex-col py-32  relative cursor-default flex justify-center items-center overflow-hidden text-white h-7/12">
                 <h1 className='font-cabinSketch sm:text-7xl md:text-8xl text-5xl'>
                     <strong>Our Menu</strong>

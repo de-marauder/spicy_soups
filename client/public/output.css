@@ -1,6 +1,6 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Cabin:wght@500&family=Festive&family=Gloria+Hallelujah&family=Indie+Flower&family=Neonderthaw&display=swap'); */
-
-/* ! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com */
+/*
+! tailwindcss v3.0.18 | MIT License | https://tailwindcss.com
+*/
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -1239,14 +1239,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
-.py-32 {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
 }
 
 .px-1 {
@@ -1772,10 +1772,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-stops: var(--tw-gradient-from), #f97316, var(--tw-gradient-to, rgb(249 115 22 / 0));
 }
 
-.hover\:via-stone-300:hover {
-  --tw-gradient-stops: var(--tw-gradient-from), #d6d3d1, var(--tw-gradient-to, rgb(214 211 209 / 0));
-}
-
 .hover\:to-red-600:hover {
   --tw-gradient-to: #dc2626;
 }
@@ -1816,11 +1812,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-red-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-
-.hover\:text-stone-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(87 83 78 / var(--tw-text-opacity));
 }
 
 .before\:hover\:bg-green-300:hover::before {

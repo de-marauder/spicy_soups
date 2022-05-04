@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ref, set, onValue } from "firebase/database";
 
+import Spinner from '../../UI/Spinner/Spinner'
+
 import { db } from '../../../firebase-config'
 import OrderSummary from "./OrderSummary";
 
@@ -12,6 +14,8 @@ const Payment = ({user}) => {
     const contactInfo = useSelector((state) => { return state.cartReducer.contactInfo })
     const order = useSelector((state) => { return state.cartReducer.itemCounter })
     const dispatch = useDispatch()
+
+    const [spinner, setSpinner] = useState(false)
 
     console.log(Object.entries(order).map((entry) => {
         return {
@@ -25,6 +29,8 @@ const Payment = ({user}) => {
 
     const makePayment = () => {
         const date = new Date()
+
+        setSpinner(true)
 
         set(ref(db, `Orders/${orderNo}`), {
             contactInfo: { ...contactInfo },
@@ -41,8 +47,11 @@ const Payment = ({user}) => {
         })
         
         dispatch({ type: "DELETE_CONTACT_INFO" })
-        // process.env.REACT_APP_SERVER_URL || || "https://spicy-soups.herokuapp.com/api/payment" || "http://localhost:5000/api/payment"
-        fetch("http://localhost:5000/api/payment", {
+        // process.env.REACT_APP_SERVER_URL || "https://spicy-soups.herokuapp.com/api/payment" || "http://localhost:5000/api/payment"
+        fetch(
+            "https://spicy-soups.herokuapp.com/api/payment"
+            // "http://localhost:5000/api/payment"
+        , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -69,10 +78,14 @@ const Payment = ({user}) => {
         .then(({ url }) => {
             // console.log(url)
             window.location = url
+            setSpinner(false)
         })
         .catch((error) => {
             console.log("ERROR => ", error)
         })
+        // setTimeout(()=>{
+        //     setSpinner(false)
+        // }, 10000)
     }
     const payCash =()=>{
         dispatch({type: 'PAY_CASH'})
@@ -108,13 +121,14 @@ const Payment = ({user}) => {
 
     return (
         <>
+        {spinner ? <Spinner /> : null}
             <div className="mb-10 sm:mr-5 col-span-2">
 
                 <div onClick={makePayment} className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 hover:from-yellow-100 hover:to-yellow-100 w-full h-fit rounded-3xl flex justify-center items-center">
-                    <p className="text-xl cursor-default md:text-3xl font-gloria">Click to pay online</p>
+                    <p className="text-xl cursor-default md:text-3xl">Click to pay online</p>
                 </div>
                 <div onClick={payCash} className="p-10 mb-10 bg-gradient-to-br from-stone-400 via-yellow-100 to-stone-200 hover:from-yellow-100 hover:to-yellow-100 w-full h-fit rounded-3xl flex justify-center items-center">
-                    <p className="text-xl cursor-default md:text-3xl font-gloria">Click to pay cash on delivery</p>
+                    <p className="text-xl cursor-default md:text-3xl">Click to pay cash on delivery</p>
                 </div>
 
             </div>
