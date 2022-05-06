@@ -41,7 +41,7 @@ const Payment = ({user}) => {
             time: date.toString(),
             order: order
         })
-        console.log('payment ===> user_id: ', user.uid)
+        // console.log('payment ===> user_id: ', user.uid)
         user && set(ref(db, `/Users/Customers/${user.uid}`), {
             contactInfo: { ...contactInfo }
         })
@@ -67,12 +67,12 @@ const Payment = ({user}) => {
         }).then(async (res) => {
 
             var response = await res.json()
-            console.log(response)
+            // console.log(response)
             if (res.ok) {
-                console.log("res is ok")
+                // console.log("res is ok")
                 return response
             }
-            console.log("res is not ok!")
+            // console.log("res is not ok!")
             return Promise.reject(response)
         })
         .then(({ url }) => {
