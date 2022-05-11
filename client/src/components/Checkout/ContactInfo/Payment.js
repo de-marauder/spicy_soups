@@ -67,20 +67,21 @@ const Payment = ({user}) => {
         }).then(async (res) => {
 
             var response = await res.json()
-            // console.log(response)
+            console.log(response)
             if (res.ok) {
-                // console.log("res is ok")
+                console.log("res is ok")
                 return response
             }
-            // console.log("res is not ok!")
+            console.log("res is not ok!")
             return Promise.reject(response)
         })
         .then(({ url }) => {
-            // console.log(url)
+            console.log(url)
             window.location = url
             setSpinner(false)
         })
         .catch((error) => {
+            setSpinner(true)
             console.log("ERROR => ", error)
         })
         // setTimeout(()=>{

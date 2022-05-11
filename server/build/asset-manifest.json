@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.779b109d.css",
+    "main.js": "/static/js/main.ca1afc87.js",
+    "static/media/agreement.png": "/static/media/agreement.50f039b136e08e6cb4cc.png",
+    "static/media/commercial.png": "/static/media/commercial.c7c6a966aa0beb65cffc.png",
+    "static/media/investment.png": "/static/media/investment.33592a62560023bb6ff6.png",
+    "static/media/email-mail-pngrepo-com.png": "/static/media/email-mail-pngrepo-com.6908c354c144c4b38df2.png",
+    "index.html": "/index.html",
+    "main.779b109d.css.map": "/static/css/main.779b109d.css.map",
+    "main.ca1afc87.js.map": "/static/js/main.ca1afc87.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.779b109d.css",
+    "static/js/main.ca1afc87.js"
+  ]
+}
